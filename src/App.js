@@ -5,10 +5,16 @@ import MessageArea from "./components/MessageArea";
 
 function App() {
   return (
-    <div className="columns-3">
-      <Sidebar />
-      <TextChats></TextChats>
-      <MessageArea></MessageArea>
+    <div className="columns h-screen">
+      <div className="">
+        <Sidebar />
+      </div>
+      <div className="">
+        <TextChats></TextChats>
+      </div>
+      <div className="">
+        <MessageArea></MessageArea>
+      </div>
     </div>
   );
 }
