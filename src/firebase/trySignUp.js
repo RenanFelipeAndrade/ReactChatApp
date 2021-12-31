@@ -1,3 +1,4 @@
+import "./init";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import { doc, getFirestore, setDoc } from "firebase/firestore";
 const db = getFirestore();

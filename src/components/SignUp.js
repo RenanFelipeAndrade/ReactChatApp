@@ -6,13 +6,24 @@ import "../firebase/init";
 class SingUp extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { username: "", email: "", password: "", confirmPassword: "" };
+    this.state = {
+      username: "",
+      email: "",
+      password: "",
+      confirmPassword: "",
+      differentPasswordsError: false,
+    };
     this.formChangeHandler = this.formChangeHandler.bind(this);
     this.formSubmitHandler = this.formSubmitHandler.bind(this);
   }
   formSubmitHandler(event) {
-    event.preventDefault();
-    trySignUp(this.state);
+    if (this.state.password === this.state.confirmPassword) {
+      trySignUp(this.state);
+    } else {
+      event.preventDefault();
+      this.setState({ differentPasswordsError: true });
+      console.log("deu não fi");
+    }
   }
 
   formChangeHandler(event) {
@@ -75,6 +86,16 @@ class SingUp extends React.Component {
               placeholder="Confirme a senha"
               required
             ></input>
+
+            {this.state.differentPasswordsError ? (
+              <div>
+                <small className="text-red-500">
+                  A senha e a confirmação estão diferentes!
+                </small>
+              </div>
+            ) : (
+              ""
+            )}
           </div>
 
           <div className="min-w-fit space-x-1">
