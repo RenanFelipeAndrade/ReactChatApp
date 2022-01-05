@@ -1,19 +1,13 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "./css/index.css";
-import App from "./App";
-import Login from "./components/Login";
 import reportWebVitals from "./reportWebVitals";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import SingUp from "./components/SignUp";
+import { BrowserRouter } from "react-router-dom";
+import App from "./App";
 
 ReactDOM.render(
   <BrowserRouter>
-    <Routes>
-      <Route path={""} element={<App />} />
-      <Route path={"/login"} element={<Login />} />
-      <Route path={"/signup"} element={<SingUp />} />
-    </Routes>
+    <App />
   </BrowserRouter>,
   document.getElementById("root")
 );

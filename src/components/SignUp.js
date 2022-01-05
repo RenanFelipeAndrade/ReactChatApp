@@ -18,12 +18,11 @@ class SingUp extends React.Component {
   }
   formSubmitHandler(event) {
     if (this.state.password === this.state.confirmPassword) {
+      this.setState({ differentPasswordsError: false });
       trySignUp(this.state);
-    } else {
-      event.preventDefault();
-      this.setState({ differentPasswordsError: true });
-      console.log("deu não fi");
     }
+    event.preventDefault();
+    this.setState({ differentPasswordsError: true });
   }
 
   formChangeHandler(event) {
@@ -37,11 +36,11 @@ class SingUp extends React.Component {
   }
   render() {
     return (
-      <div className="flex flex-col justify-center items-center py-3">
+      <div className="flex flex-col justify-center items-center p-3">
         <header>
           <h1 className="text-3xl">Olá visitante!</h1>
         </header>
-        <form className="py-3 w-fit" onSubmit={this.formSubmitHandler}>
+        <form className="p-3 w-fit" onSubmit={this.formSubmitHandler}>
           <div className="flex flex-col ">
             <label>Usuário</label>
             <input
@@ -98,21 +97,25 @@ class SingUp extends React.Component {
             )}
           </div>
 
-          <div className="min-w-fit space-x-1">
+          <div className="min-w-full mt-2">
             <button
               type="submit"
-              className="rounded-sm bg-teal-500 hover:bg-teal-700 transition text-sm px-1 "
+              className="rounded-sm bg-teal-500 hover:bg-teal-700 transition text-sm py-1 w-full"
             >
               Confirmar
             </button>
-            <Link to={"/"}>
-              <button
-                type="button"
-                className="rounded-sm bg-red-500 hover:bg-red-700 transition text-sm px-1"
+          </div>
+          <div className="mt-2">
+            <small>
+              Tem uma conta? Faça login{" "}
+              <Link
+                to={"/login"}
+                className="text-blue-400 transition-colors hover:text-blue-600 focus:text-blue-600 focus:underline "
+                replace
               >
-                Cancelar
-              </button>
-            </Link>
+                clicando aqui
+              </Link>
+            </small>
           </div>
         </form>
       </div>
