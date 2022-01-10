@@ -23,7 +23,6 @@ function App() {
     });
     return unsubscribe;
   }, []);
-  console.log(localStorage);
 
   return (
     <Routes>

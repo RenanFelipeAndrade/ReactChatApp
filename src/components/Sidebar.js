@@ -1,6 +1,7 @@
 import "../css/sidebar.css";
 import { getAuth, signOut } from "firebase/auth";
 import { Navigate } from "react-router";
+import Example, { useModal } from "./Modal";
 
 const img1 =
   "https://cdn.discordapp.com/icons/910210998546366494/6ccc2c37f5cf6a07a1a193f6fc33f551.webp?size=80";
@@ -13,6 +14,8 @@ const img4 =
 const servers = [img1, img2, img3, img4];
 
 function Sidebar() {
+  const { isVisible, toggleModal } = useModal();
+
   const listServerAsElement = servers.map((img) => (
     <li>
       <img
@@ -26,7 +29,7 @@ function Sidebar() {
     <div className="bg-zinc-700 w-max h-screen flex flex-col">
       <ul className="p-2 space-y-2">
         {listServerAsElement}
-        <li>
+        <li onClick={toggleModal}>
           <svg
             className="rounded-lg hover:rounded-3xl transition-all duration-150 ease-in h-10 w-10"
             aria-hidden="false"
@@ -59,6 +62,7 @@ function Sidebar() {
           Sair
         </button>
       </div>
+      <Example isVisible={isVisible} toggleModal={toggleModal} />
     </div>
   );
 }
