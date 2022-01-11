@@ -29,7 +29,7 @@ export default class Login extends React.Component {
 
   render() {
     return (
-      <div className="flex flex-col justify-center items-center p-3">
+      <div className="flex flex-col h-screen justify-center items-center p-3">
         <header>
           <h1 className="text-3xl">Bem-vindo!</h1>
         </header>

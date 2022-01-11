@@ -12,7 +12,7 @@ function MessageArea() {
     </div>
   ));
   return (
-    <div className="flex flex-col h-full justify-between p-2">
+    <div className="flex flex-col h-screen justify-between p-2">
       <main className="space-y-1">{message}</main>
       <form>
         <div className="flex flex-row">

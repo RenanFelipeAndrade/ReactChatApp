@@ -15,7 +15,7 @@ function TextChats() {
   ));
 
   return (
-    <div>
+    <div className="h-screen">
       <ul className="p-2 space-y-2">{chatName}</ul>
     </div>
   );
