@@ -1,10 +1,11 @@
 import { doc, setDoc } from "firebase/firestore";
-import { auth, db } from "./init";
+import { db } from "./init";
 
+// cria servidor na Firestore, atrelando o uid do usuário para determinar posse
 export default async function createServer(data) {
   try {
     await setDoc(doc(db, "server", data.serverName), {
-      user: auth.currentUser.uid,
+      user: data.currentUser.uid,
       serverName: data.serverName,
     });
   } catch (error) {

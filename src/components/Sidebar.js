@@ -1,33 +1,36 @@
-import "../css/sidebar.css";
 import { getAuth, signOut } from "firebase/auth";
 import { Navigate } from "react-router";
-import Example, { useModal } from "./Modal";
-
-const img1 =
-  "https://cdn.discordapp.com/icons/910210998546366494/6ccc2c37f5cf6a07a1a193f6fc33f551.webp?size=80";
-const img2 =
-  "https://cdn.discordapp.com/icons/819669388370247732/66cda9201abd37315e19e3662c69ff85.webp?size=80";
-const img3 =
-  "https://cdn.discordapp.com/icons/910210998546366494/6ccc2c37f5cf6a07a1a193f6fc33f551.webp?size=80";
-const img4 =
-  "https://cdn.discordapp.com/icons/819669388370247732/66cda9201abd37315e19e3662c69ff85.webp?size=80";
-const servers = [img1, img2, img3, img4];
+import Modal, { useModal } from "./Modal";
+import { useEffect, useState } from "react";
+import useAuth from "../hooks/useAuth";
+import fetchServers from "../firebase/fetchServers";
 
 function Sidebar() {
+  // hooks
+  const currentUser = useAuth();
+  const [data, setData] = useState([]);
   const { isVisible, toggleModal } = useModal();
 
-  const listServerAsElement = servers.map((img) => (
-    <li>
-      <img
-        src={img}
-        alt="Logo"
-        className="rounded-lg hover:rounded-3xl transition-all duration-150 ease-in  h-10 w-10"
-      />
+  // effects
+  useEffect(() => {
+    fetchServers(currentUser).then((server) => setData(server));
+  }, [currentUser]);
+
+  // manipulação de informação
+  const listServerAsElement = data.map((serverName) => (
+    <li className="text-sm" key={serverName}>
+      <button
+        type="button"
+        className="transition w-full hover:bg-zinc-600 rounded break-all"
+      >
+        {serverName}
+      </button>
     </li>
   ));
+
   return (
-    <div className="bg-zinc-700 w-max h-screen flex flex-col">
-      <ul className="p-2 space-y-2">
+    <div className="bg-zinc-700 w-fit h-screen flex flex-col">
+      <ul className="p-2 space-y-2 w-min">
         {listServerAsElement}
         <li onClick={toggleModal}>
           <svg
@@ -62,7 +65,11 @@ function Sidebar() {
           Sair
         </button>
       </div>
-      <Example isVisible={isVisible} toggleModal={toggleModal} />
+      <Modal
+        isVisible={isVisible}
+        currentUser={currentUser}
+        toggleModal={toggleModal}
+      />
     </div>
   );
 }

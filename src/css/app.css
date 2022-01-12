@@ -1,7 +1,0 @@
-/* @media (min-width: 640px) { */
-  .columns{
-    display: grid;
-    grid-template-columns: min-content minmax(0, 10rem) 1fr;
-    
-  } 
-/* } */

@@ -4,8 +4,9 @@ import trySignUp from "../firebase/trySignUp";
 import "../firebase/init";
 
 class SingUp extends React.Component {
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
+    // informações do usuário, nome de usuário, email, senha e confirmação de senha
     this.state = {
       username: "",
       email: "",
@@ -13,19 +14,25 @@ class SingUp extends React.Component {
       confirmPassword: "",
       differentPasswordsError: false,
     };
+    // funções ativadas por eventos
     this.formChangeHandler = this.formChangeHandler.bind(this);
     this.formSubmitHandler = this.formSubmitHandler.bind(this);
   }
+
   formSubmitHandler(event) {
+    // verifica se senha e confimação são diferentes
     if (this.state.password === this.state.confirmPassword) {
       this.setState({ differentPasswordsError: false });
+      // função firebase de cadastro
       trySignUp(this.state);
     }
     event.preventDefault();
+    // se são difentes, renderiza mensagem de erro
     this.setState({ differentPasswordsError: true });
   }
 
   formChangeHandler(event) {
+    // atualiza o state ao inserir informações nos inputs
     const target = event.target;
     const value = target.value;
     const name = target.name;
@@ -86,6 +93,7 @@ class SingUp extends React.Component {
               required
             ></input>
 
+            {/* mensagem de erro */}
             {this.state.differentPasswordsError ? (
               <div>
                 <small className="text-red-500">

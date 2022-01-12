@@ -18,7 +18,7 @@ export function useModal() {
 class ModalForm extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { serverName: "" };
+    this.state = { serverName: "", currentUser: this.props.currentUser };
     this.formChangeHandler = this.formChangeHandler.bind(this);
     this.formSubmitHandler = this.formSubmitHandler.bind(this);
   }
@@ -42,6 +42,7 @@ class ModalForm extends React.Component {
               <ServerIcon className="w-5 h-5" />
               <h2 className="text-xl">Adicionar servidor</h2>
             </div>
+
             <label className="">Nome do servidor</label>
             <input
               type={"text"}
@@ -74,7 +75,9 @@ class ModalForm extends React.Component {
   }
 }
 
-export default function Example({ isVisible, toggleModal }) {
+// TODO criar um contexto para o currentUser
+export default function Modal({ isVisible, toggleModal, currentUser }) {
+  // modal que aparece ao clicar no + do sidebar
   const cancelButtonRef = useRef(null);
 
   return (
@@ -97,7 +100,6 @@ export default function Example({ isVisible, toggleModal }) {
           >
             <Dialog.Overlay className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" />
           </Transition.Child>
-          {/* This element is to trick the browser into centering the modal contents. */}
           <Transition.Child
             enter="ease-out duration-300"
             enterFrom="opacity-0"
@@ -106,7 +108,8 @@ export default function Example({ isVisible, toggleModal }) {
             leaveFrom="opacity-100"
             leaveTo="opacity-0"
           >
-            <ModalForm toggleModal={toggleModal} />
+            {/* Componente formulário */}
+            <ModalForm toggleModal={toggleModal} currentUser={currentUser} />
           </Transition.Child>
         </div>
       </Dialog>

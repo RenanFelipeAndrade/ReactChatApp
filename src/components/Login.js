@@ -3,21 +3,26 @@ import { Link } from "react-router-dom";
 import trySignIn from "../firebase/trySignIn";
 
 export default class Login extends React.Component {
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
+    // informações do usuário, email e senha
     this.state = {
       email: "",
       password: "",
     };
+    // funções ativadas por eventos
     this.formChangeHandler = this.formChangeHandler.bind(this);
     this.formSubmitHandler = this.formSubmitHandler.bind(this);
   }
 
   formSubmitHandler(event) {
     event.preventDefault();
+    // função firebase para login
     trySignIn(this.state);
   }
+
   formChangeHandler(event) {
+    // atualiza o state ao inserir informações nos inputs
     const target = event.target;
     const value = target.value;
     const name = target.name;
@@ -33,6 +38,7 @@ export default class Login extends React.Component {
         <header>
           <h1 className="text-3xl">Bem-vindo!</h1>
         </header>
+
         <form className="p-3 w-max" onSubmit={this.formSubmitHandler}>
           <div className="flex flex-col ">
             <label>Email</label>
@@ -43,6 +49,7 @@ export default class Login extends React.Component {
               name="email"
               placeholder="Digite o email"
             ></input>
+
             <label>Senha</label>
             <input
               type={"password"}

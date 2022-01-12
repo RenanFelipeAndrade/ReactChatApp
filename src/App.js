@@ -1,36 +1,22 @@
-import "./css/app.css";
 import Sidebar from "./components/Sidebar";
 import TextChats from "./components/TextChats";
 import MessageArea from "./components/MessageArea";
-import React, { useContext, useEffect, useState } from "react";
-import { auth } from "./firebase/init";
+import React from "react";
 import { Navigate, Route, Routes } from "react-router";
 import Login from "./components/Login";
 import SignUp from "./components/SignUp";
-
-const AuthContext = React.createContext();
-
-export function useAuth() {
-  return useContext(AuthContext);
-}
+import useAuth from "./hooks/useAuth";
 
 function App() {
-  const [currentUser, setCurrentUser] = useState();
-
-  useEffect(() => {
-    const unsubscribe = auth.onAuthStateChanged((user) => {
-      setCurrentUser(user);
-    });
-    return unsubscribe;
-  }, []);
-
+  const currentUser = useAuth();
   return (
     <Routes>
       <Route
         path="/"
         element={
+          // se não houver usuário logado, redireciona ao login
           currentUser !== null ? (
-            <div className="columns h-screen">
+            <div className="flex flex-row">
               <Sidebar />
               <TextChats></TextChats>
               <MessageArea></MessageArea>
