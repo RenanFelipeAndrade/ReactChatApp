@@ -2,6 +2,7 @@ import React, { Fragment, useRef, useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { ServerIcon } from "@heroicons/react/outline";
 import createServer from "../firebase/createServer";
+import { createPortal } from "react-dom";
 
 export function useModal() {
   const [isVisible, setIsVisible] = useState(true);
@@ -79,8 +80,9 @@ class ModalForm extends React.Component {
 export default function Modal({ isVisible, toggleModal, currentUser }) {
   // modal que aparece ao clicar no + do sidebar
   const cancelButtonRef = useRef(null);
+  const div = document.createElement("div");
 
-  return (
+  return createPortal(
     <Transition.Root show={isVisible} as={Fragment}>
       <Dialog
         as="div"
@@ -113,6 +115,7 @@ export default function Modal({ isVisible, toggleModal, currentUser }) {
           </Transition.Child>
         </div>
       </Dialog>
-    </Transition.Root>
+    </Transition.Root>,
+    div
   );
 }
