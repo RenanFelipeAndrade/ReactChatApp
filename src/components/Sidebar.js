@@ -2,22 +2,22 @@ import { getAuth, signOut } from "firebase/auth";
 import { Navigate } from "react-router";
 import Modal, { useModal } from "./Modal";
 import { useEffect, useState } from "react";
-import useAuth from "../hooks/useAuth";
 import fetchServers from "../firebase/fetchServers";
+import { useAuth } from "../context/AuthContext";
 
 function Sidebar() {
   // hooks
-  const currentUser = useAuth();
-  const [data, setData] = useState([]);
+  const { userData } = useAuth();
+  const [servers, setServers] = useState([]);
   const { isVisible, toggleModal } = useModal();
 
   // effects
   useEffect(() => {
-    fetchServers(currentUser).then((server) => setData(server));
-  }, [currentUser]);
+    fetchServers(userData).then((servers) => setServers(servers));
+  }, [userData]);
 
   // manipulação de informação
-  const listServerAsElement = data.map((serverName) => (
+  const listServerAsElement = servers.map((serverName) => (
     <li className="text-sm" key={serverName}>
       <button
         type="button"
@@ -67,7 +67,7 @@ function Sidebar() {
       </div>
       <Modal
         isVisible={isVisible}
-        currentUser={currentUser}
+        currentUser={userData}
         toggleModal={toggleModal}
       />
     </div>
