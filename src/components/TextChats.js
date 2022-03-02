@@ -3,7 +3,7 @@ import { useState } from "react";
 import { ChatForm } from "./ChatForm";
 import Modal, { useModal } from "./Modal";
 
-function TextChats() {
+function TextChats({ activeServer }) {
   const { chats, setChats } = useState();
   const { isVisible, toggleModal } = useModal();
   const chatName = chats?.map((name) => (

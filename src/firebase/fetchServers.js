@@ -7,12 +7,13 @@ export default async function fetchServers(currentUser) {
     collection(db, "server"),
     where("user", "==", currentUser.uid)
   );
-  let array = [];
+
+  const serverDoc = [];
 
   const querySnapshot = await getDocs(q);
 
   querySnapshot.forEach((doc) => {
-    array.push(doc.data().serverName);
+    serverDoc.push(doc);
   });
-  return array;
+  return serverDoc;
 }

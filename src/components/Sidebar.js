@@ -6,26 +6,39 @@ import fetchServers from "../firebase/fetchServers";
 import { useAuth } from "../context/AuthContext";
 import { ModalForm } from "./ModalForm";
 
-function Sidebar() {
+function Sidebar({ activeServer, setActiveServer }) {
   // hooks
+  const [serversDocs, setServersDocs] = useState([]);
   const { userData } = useAuth();
-  const [servers, setServers] = useState([]);
   const { isVisible, toggleModal } = useModal();
 
   // effects
   useEffect(() => {
-    fetchServers(userData).then((servers) => setServers(servers));
+    fetchServers(userData).then((serversDocs) => setServersDocs(serversDocs));
   }, [userData]);
 
   // manipulação de informação
-  const listServerAsElement = servers.map((serverName) => (
-    <li className="text-sm" key={serverName}>
-      <button
-        type="button"
-        className="transition w-full hover:bg-zinc-600 rounded break-all"
-      >
-        {serverName}
-      </button>
+  const listServerAsElement = serversDocs.map((serverDoc) => (
+    <li
+      className="text-sm"
+      key={serverDoc.id}
+      onClick={() => setActiveServer(serverDoc)}
+    >
+      {serverDoc.id === activeServer?.id ? (
+        <button
+          type="button"
+          className=" bg-zinc-600 transition w-full p-1 rounded break-all"
+        >
+          {serverDoc.data().serverName}
+        </button>
+      ) : (
+        <button
+          type="button"
+          className="transition w-full hover:bg-zinc-600 p-1 rounded break-all"
+        >
+          {serverDoc.data().serverName}
+        </button>
+      )}
     </li>
   ));
 
@@ -66,12 +79,8 @@ function Sidebar() {
           Sair
         </button>
       </div>
-      <Modal
-        isVisible={isVisible}
-        currentUser={userData}
-        toggleModal={toggleModal}
-      >
-        <ModalForm toggleModal={toggleModal} />
+      <Modal isVisible={isVisible} toggleModal={toggleModal}>
+        <ModalForm currentUser={userData} toggleModal={toggleModal} />
       </Modal>
     </div>
   );
