@@ -77,7 +77,7 @@ class ModalForm extends React.Component {
 }
 
 // TODO criar um contexto para o currentUser
-export default function Modal({ isVisible, toggleModal, currentUser }) {
+export default function Modal({ isVisible, toggleModal, children }) {
   // modal que aparece ao clicar no + do sidebar
   const cancelButtonRef = useRef(null);
   const div = document.createElement("div");
@@ -100,7 +100,7 @@ export default function Modal({ isVisible, toggleModal, currentUser }) {
             leaveFrom="opacity-100"
             leaveTo="opacity-0"
           >
-            <Dialog.Overlay className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" />
+            <Dialog.Overlay className="fixed inset-0 flex items-center justify-center bg-gray-500 bg-opacity-75 transition-opacity"></Dialog.Overlay>
           </Transition.Child>
           <Transition.Child
             enter="ease-out duration-300"
@@ -110,8 +110,9 @@ export default function Modal({ isVisible, toggleModal, currentUser }) {
             leaveFrom="opacity-100"
             leaveTo="opacity-0"
           >
-            {/* Componente formulário */}
-            <ModalForm toggleModal={toggleModal} currentUser={currentUser} />
+            <div className="overflow-hidden text-left rounded-lg shadow-xl sm:min-w-full bg-zinc-800 transform transition-all">
+              {children}
+            </div>
           </Transition.Child>
         </div>
       </Dialog>
