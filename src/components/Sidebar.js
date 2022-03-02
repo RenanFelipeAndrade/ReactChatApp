@@ -4,6 +4,7 @@ import Modal, { useModal } from "./Modal";
 import { useEffect, useState } from "react";
 import fetchServers from "../firebase/fetchServers";
 import { useAuth } from "../context/AuthContext";
+import { ModalForm } from "./ModalForm";
 
 function Sidebar() {
   // hooks
@@ -69,7 +70,9 @@ function Sidebar() {
         isVisible={isVisible}
         currentUser={userData}
         toggleModal={toggleModal}
-      />
+      >
+        <ModalForm toggleModal={toggleModal} />
+      </Modal>
     </div>
   );
 }
