@@ -7,6 +7,7 @@ export async function createServer(data) {
     await addDoc(collection(db, "server"), {
       user: data.currentUser.uid,
       serverName: data.serverName,
+      chats: [],
     });
   } catch (error) {
     console.log(error);

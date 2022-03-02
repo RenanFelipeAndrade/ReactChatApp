@@ -1,13 +1,13 @@
-import { doc, setDoc } from "firebase/firestore";
+import { arrayUnion, doc, updateDoc } from "firebase/firestore";
 import { useForm } from "react-hook-form";
 import { db } from "../firebase/init";
 
-export const ChatForm = ({ toggleModal }) => {
+export const ChatForm = ({ toggleModal, activeServer }) => {
   const { register, handleSubmit } = useForm();
   async function createChat(data) {
     try {
-      await setDoc(doc(db, "chats", data.chatName), {
-        chatName: data.chatName,
+      await updateDoc(doc(db, "server", activeServer.id), {
+        chats: arrayUnion({ name: data.chatName, messages: [] }),
       });
     } catch (error) {
       console.log(error);

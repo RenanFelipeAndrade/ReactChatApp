@@ -26,7 +26,7 @@ function TextChats({ activeServer }) {
         <ul className="p-2 space-y-2">{chatName ? chatName : "Sem chats"}</ul>
       </div>
       <Modal isVisible={isVisible} toggleModal={toggleModal}>
-        <ChatForm toggleModal={toggleModal} />
+        <ChatForm activeServer={activeServer} toggleModal={toggleModal} />
       </Modal>
     </>
   );
