@@ -80,6 +80,9 @@ export default class Login extends React.Component {
               </Link>
             </small>
           </div>
+          <Link to={"/"} replace>
+            home
+          </Link>
         </form>
       </div>
     );
