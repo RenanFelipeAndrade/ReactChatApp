@@ -2,7 +2,7 @@ import { getAuth, signOut } from "firebase/auth";
 import { Navigate } from "react-router";
 import Modal, { useModal } from "./Modal";
 import { useEffect, useState } from "react";
-import fetchServers from "../firebase/fetchServers";
+import serverListener from "../firebase/serverListener";
 import { useAuth } from "../context/AuthContext";
 import { ModalForm } from "./ModalForm";
 
@@ -14,7 +14,7 @@ function Sidebar({ activeServer, setActiveServer }) {
 
   // effects
   useEffect(() => {
-    fetchServers(userData).then((serversDocs) => setServersDocs(serversDocs));
+    serverListener(userData, setServersDocs);
   }, [userData]);
 
   // manipulação de informação
