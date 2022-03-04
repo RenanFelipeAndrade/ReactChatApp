@@ -9,6 +9,7 @@ import RequireAuth from "./components/RequireAuth";
 
 function App() {
   const [activeServer, setActiveServer] = useState(null);
+  const [activeChat, setActiveChat] = useState({});
   return (
     <Routes>
       <Route
@@ -21,8 +22,15 @@ function App() {
                 setActiveServer={setActiveServer}
                 activeServer={activeServer}
               />
-              <TextChats activeServer={activeServer}></TextChats>
-              <MessageArea></MessageArea>
+              <TextChats
+                setActiveChat={setActiveChat}
+                activeServer={activeServer}
+                activeChat={activeChat}
+              />
+              <MessageArea
+                activeChat={activeChat}
+                activeServer={activeServer}
+              />
             </div>
           </RequireAuth>
         }
