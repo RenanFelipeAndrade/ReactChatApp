@@ -8,6 +8,7 @@ function TextChats({ activeServer, setActiveChat }) {
 
   const chatName = chats?.map((chat, index) => (
     <li
+      key={index}
       className="text-center "
       onClick={() => setActiveChat({ index: index, ...chat })}
     >

@@ -1,4 +1,4 @@
-import { arrayUnion, doc, updateDoc } from "firebase/firestore";
+import { doc, updateDoc } from "firebase/firestore";
 import { useForm } from "react-hook-form";
 import { useAuth } from "../context/AuthContext";
 import { db } from "../firebase/init";
@@ -8,8 +8,8 @@ function MessageArea({ activeChat, activeServer }) {
   const { userData } = useAuth();
   const messages = activeChat?.messages;
 
-  const message = messages?.map((message) => (
-    <div className="border-l border-teal-500 px-1">
+  const message = messages?.map((message, index) => (
+    <div key={index} className="border-l border-teal-500 px-1">
       <small className="underline">{message.user}</small>
       <p className="text-sm"> {message.content} </p>
     </div>
