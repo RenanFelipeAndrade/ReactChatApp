@@ -1,7 +1,7 @@
 import Sidebar from "./components/Sidebar";
 import TextChats from "./components/TextChats";
 import MessageArea from "./components/MessageArea";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Route, Routes } from "react-router";
 import Login from "./components/Login";
 import SignUp from "./components/SignUp";
@@ -10,6 +10,8 @@ import RequireAuth from "./components/RequireAuth";
 function App() {
   const [activeServer, setActiveServer] = useState(null);
   const [activeChat, setActiveChat] = useState({});
+  const [serversDocs, setServersDocs] = useState([]);
+
   return (
     <Routes>
       <Route
@@ -19,12 +21,15 @@ function App() {
           <RequireAuth>
             <div className="flex flex-row">
               <Sidebar
+                serversDocs={serversDocs}
+                setServersDocs={setServersDocs}
                 setActiveServer={setActiveServer}
                 activeServer={activeServer}
               />
               <TextChats
                 setActiveChat={setActiveChat}
                 activeServer={activeServer}
+                serversDocs={serversDocs}
                 activeChat={activeChat}
               />
               <MessageArea

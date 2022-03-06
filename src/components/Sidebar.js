@@ -6,22 +6,27 @@ import serverListener from "../firebase/serverListener";
 import { useAuth } from "../context/AuthContext";
 import { ModalForm } from "./ModalForm";
 
-function Sidebar({ activeServer, setActiveServer }) {
+function Sidebar({
+  activeServer,
+  setActiveServer,
+  setServersDocs,
+  serversDocs,
+}) {
   // hooks
-  const [serversDocs, setServersDocs] = useState([]);
   const { userData } = useAuth();
   const { isVisible, toggleModal } = useModal();
 
   // effects
   useEffect(() => {
     serverListener(userData, setServersDocs);
-  }, [userData]);
+  }, [userData, setServersDocs]);
 
   // manipulação de informação
-  const listServerAsElement = serversDocs.map((serverDoc) => (
+  const listServerAsElement = serversDocs.map((serverDoc, index) => (
     <li
       className="text-sm"
       key={serverDoc.id}
+      // onClick={() => setActiveServer({ ...serverDoc, index: index })}
       onClick={() => setActiveServer(serverDoc)}
     >
       {serverDoc.id === activeServer?.id ? (

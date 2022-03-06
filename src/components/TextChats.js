@@ -1,10 +1,19 @@
 import { PlusCircleIcon } from "@heroicons/react/outline";
+import { useEffect, useState } from "react";
 import { ChatForm } from "./ChatForm";
 import Modal, { useModal } from "./Modal";
 
-function TextChats({ activeServer, setActiveChat }) {
+function TextChats({ activeServer, setActiveChat, serversDocs }) {
   const { isVisible, toggleModal } = useModal();
-  const chats = activeServer?.data().chats;
+  const [chats, setChats] = useState([]);
+  useEffect(() => {
+    if (activeServer) {
+      const server = serversDocs.find(
+        (server) => server.id === activeServer.id
+      );
+      setChats(server.data().chats);
+    }
+  }, [activeServer, serversDocs]);
 
   const chatName = chats?.map((chat, index) => (
     <li
@@ -27,7 +36,9 @@ function TextChats({ activeServer, setActiveChat }) {
             <PlusCircleIcon className="w-4 h-4" />
           </button>
         </header>
-        <ul className="p-2 space-y-2">{chatName ? chatName : "Sem chats"}</ul>
+        <ul className="space-y-2">
+          {chatName ? chatName : <small>Sem chats</small>}
+        </ul>
       </div>
       <Modal isVisible={isVisible} toggleModal={toggleModal}>
         <ChatForm activeServer={activeServer} toggleModal={toggleModal} />
