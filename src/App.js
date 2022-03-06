@@ -1,7 +1,7 @@
 import Sidebar from "./components/Sidebar";
 import TextChats from "./components/TextChats";
 import MessageArea from "./components/MessageArea";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Route, Routes } from "react-router";
 import Login from "./components/Login";
 import SignUp from "./components/SignUp";
@@ -11,6 +11,7 @@ function App() {
   const [activeServer, setActiveServer] = useState(null);
   const [activeChat, setActiveChat] = useState({});
   const [serversDocs, setServersDocs] = useState([]);
+  const [chats, setChats] = useState([]);
 
   return (
     <Routes>
@@ -30,10 +31,14 @@ function App() {
                 setActiveChat={setActiveChat}
                 activeServer={activeServer}
                 serversDocs={serversDocs}
+                chats={chats}
+                setChats={setChats}
                 activeChat={activeChat}
               />
               <MessageArea
                 activeChat={activeChat}
+                serversDocs={serversDocs}
+                chats={chats}
                 activeServer={activeServer}
               />
             </div>

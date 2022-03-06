@@ -1,7 +1,7 @@
 import { getAuth, signOut } from "firebase/auth";
 import { Navigate } from "react-router";
 import Modal, { useModal } from "./Modal";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import serverListener from "../firebase/serverListener";
 import { useAuth } from "../context/AuthContext";
 import { ModalForm } from "./ModalForm";
@@ -16,17 +16,16 @@ function Sidebar({
   const { userData } = useAuth();
   const { isVisible, toggleModal } = useModal();
 
-  // effects
+  // useeffect para atualizar os servidores quando um novo for criado
   useEffect(() => {
     serverListener(userData, setServersDocs);
   }, [userData, setServersDocs]);
 
   // manipulação de informação
-  const listServerAsElement = serversDocs.map((serverDoc, index) => (
+  const listServerAsElement = serversDocs.map((serverDoc) => (
     <li
       className="text-sm"
       key={serverDoc.id}
-      // onClick={() => setActiveServer({ ...serverDoc, index: index })}
       onClick={() => setActiveServer(serverDoc)}
     >
       {serverDoc.id === activeServer?.id ? (

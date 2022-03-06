@@ -1,11 +1,18 @@
 import { PlusCircleIcon } from "@heroicons/react/outline";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { ChatForm } from "./ChatForm";
 import Modal, { useModal } from "./Modal";
 
-function TextChats({ activeServer, setActiveChat, serversDocs }) {
+function TextChats({
+  activeServer,
+  setActiveChat,
+  serversDocs,
+  activeChat,
+  chats,
+  setChats,
+}) {
   const { isVisible, toggleModal } = useModal();
-  const [chats, setChats] = useState([]);
+  // useEffect para atualizar o componente quando houver alteração nos servidores e no servidor ativo
   useEffect(() => {
     if (activeServer) {
       const server = serversDocs.find(
@@ -13,19 +20,27 @@ function TextChats({ activeServer, setActiveChat, serversDocs }) {
       );
       setChats(server.data().chats);
     }
-  }, [activeServer, serversDocs]);
+  }, [activeServer, serversDocs, setChats]);
 
-  const chatName = chats?.map((chat, index) => (
-    <li
-      key={index}
-      className="text-center "
-      onClick={() => setActiveChat({ index: index, ...chat })}
-    >
-      <button className="p-1 text-zinc-300 whitespace-nowrap text-ellipsis text-sm hover:text-zinc-100 hover:rounded hover:bg-zinc-800 focus:text-white focus:bg-zinc-700">
-        {chat.name}
-      </button>
-    </li>
-  ));
+  const chatName = chats?.map((chat, index) => {
+    return (
+      <li
+        key={index}
+        className="text-center "
+        onClick={() => setActiveChat({ index: index, ...chat })}
+      >
+        {chat.name === activeChat.name ? (
+          <button className="p-1 bg-zinc-700 text-zinc-300 whitespace-nowrap text-ellipsis text-sm ">
+            {chat.name}
+          </button>
+        ) : (
+          <button className="p-1 text-zinc-300 whitespace-nowrap text-ellipsis text-sm hover:text-zinc-100 hover:rounded hover:bg-zinc-800 focus:text-white focus:bg-zinc-700">
+            {chat.name}
+          </button>
+        )}
+      </li>
+    );
+  });
 
   return (
     <>
