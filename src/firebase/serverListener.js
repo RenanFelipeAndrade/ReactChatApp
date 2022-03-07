@@ -3,7 +3,7 @@ import { collection, onSnapshot, query, where } from "firebase/firestore";
 
 // função para obter o servidores criados pelo usuário
 export default async function serverListener(userData, setServersDocs) {
-  const q = query(collection(db, "server"), where("user", "==", userData.uid));
+  const q = query(collection(db, "server"), where("owner", "==", userData.uid));
   onSnapshot(q, (querySnapshot) => {
     const servers = [];
     querySnapshot.forEach((doc) => {

@@ -5,8 +5,9 @@ import { db } from "./init";
 export async function createServer(data) {
   try {
     await addDoc(collection(db, "server"), {
-      user: data.currentUser.uid,
+      owner: data.currentUser.uid,
       serverName: data.serverName,
+      participants: [],
       chats: [],
     });
   } catch (error) {
