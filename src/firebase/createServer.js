@@ -5,9 +5,18 @@ import { db } from "./init";
 export async function createServer(data) {
   try {
     await addDoc(collection(db, "server"), {
-      owner: data.currentUser.uid,
+      owner: {
+        uid: data.currentUser.uid,
+        displayName: data.currentUser.displayName,
+      },
       serverName: data.serverName,
-      participants: [],
+      participantsId: [data.currentUser.uid],
+      participantsObject: [
+        {
+          uid: data.currentUser.uid,
+          displayName: data.currentUser.displayName,
+        },
+      ],
       chats: [],
     });
   } catch (error) {

@@ -1,16 +1,14 @@
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
-import { doc, setDoc } from "firebase/firestore";
-import { db } from "./init";
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  updateProfile,
+} from "firebase/auth";
 
 export default async function trySignUp(data) {
   const auth = getAuth();
   try {
     createUserWithEmailAndPassword(auth, data.email, data.password)
-      .then(
-        await setDoc(doc(db, "userInfo", data.username), {
-          username: data.username,
-        })
-      )
+      .then((user) => updateProfile(user.user, { displayName: data.username }))
       .catch((error) => {
         console.log(error.message);
       });

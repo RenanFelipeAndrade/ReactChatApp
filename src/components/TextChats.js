@@ -1,4 +1,4 @@
-import { PlusCircleIcon } from "@heroicons/react/outline";
+import { PlusCircleIcon, UserAddIcon } from "@heroicons/react/outline";
 import { useEffect } from "react";
 import { ChatForm } from "./ChatForm";
 import Modal, { useModal } from "./Modal";
@@ -12,6 +12,7 @@ function TextChats({
   setChats,
 }) {
   const { isVisible, toggleModal } = useModal();
+
   // useEffect para atualizar o componente quando houver alteração nos servidores e no servidor ativo
   useEffect(() => {
     if (activeServer) {
@@ -42,15 +43,31 @@ function TextChats({
     );
   });
 
+  function createInvitationLink() {
+    navigator.clipboard.writeText(
+      `${window.location.href}invite/${activeServer.id}`
+    );
+  }
+
   return (
     <>
-      <div className="h-screen w-min p-2 overflow-hidden">
-        <header className="flex flex-row">
+      <div className="h-screen w-32 p-2 overflow-hidden">
+        {activeServer ? (
+          <header className="text-center mb-2 ">
+            <span className="font-bold text-lg">
+              {activeServer.data().serverName}
+            </span>
+            <button type="button" onClick={createInvitationLink}>
+              <UserAddIcon className="w-4 h-4" />
+            </button>
+          </header>
+        ) : null}
+        <p className="flex flex-row text-sm">
           <span>Chats</span>
           <button onClick={toggleModal}>
             <PlusCircleIcon className="w-4 h-4" />
           </button>
-        </header>
+        </p>
         <ul className="space-y-2">
           {chatName ? chatName : <small>Sem chats</small>}
         </ul>

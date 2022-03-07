@@ -6,6 +6,7 @@ import { Route, Routes } from "react-router";
 import Login from "./components/Login";
 import SignUp from "./components/SignUp";
 import RequireAuth from "./components/RequireAuth";
+import { Invite } from "./components/Invite";
 
 function App() {
   const [activeServer, setActiveServer] = useState(null);
@@ -45,6 +46,14 @@ function App() {
           </RequireAuth>
         }
       />
+      <Route
+        path="/invite/:server"
+        element={
+          <RequireAuth>
+            <Invite />
+          </RequireAuth>
+        }
+      ></Route>
       <Route path="/login" element={<Login />} />
       <Route path="/signup" element={<SignUp />} />
     </Routes>
