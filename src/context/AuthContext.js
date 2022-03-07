@@ -7,15 +7,17 @@ export function useAuth() {
   return useContext(AuthContext);
 }
 export function AuthContextProvider({ children }) {
-  const [userData, setUserData] = useState({});
+  const [userData, setUserData] = useState(null);
+  const [loading, setLoading] = useState(true);
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
       setUserData(user);
+      setLoading(false);
     });
     return unsubscribe;
   }, []);
   return (
-    <AuthContext.Provider value={{ userData, setUserData }}>
+    <AuthContext.Provider value={{ userData, setUserData, loading }}>
       {children}
     </AuthContext.Provider>
   );
