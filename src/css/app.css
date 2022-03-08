@@ -1,0 +1,17 @@
+.sidebar-item {
+  @apply transition w-full hover:bg-zinc-600 p-1 rounded break-all;
+}
+
+.chat-button {
+  @apply p-1 text-zinc-300 whitespace-nowrap text-ellipsis text-sm hover:text-zinc-100 hover:rounded hover:bg-zinc-800 focus:text-white focus:bg-zinc-700;
+}
+
+.danger-button {
+  @apply px-2 py-1 text-sm bg-red-500 rounded-sm hover:bg-red-700 transition w-fit justify-end;
+}
+.sidebar-container {
+  @apply bg-zinc-700 w-fit h-screen flex flex-col justify-between p-2;
+}
+.sidebar-container > ul {
+  @apply space-y-2;
+}
