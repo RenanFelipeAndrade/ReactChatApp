@@ -7,7 +7,7 @@ import { useEffect } from "react";
 import serverListener from "../firebase/serverListener";
 import { useAuth } from "../context/AuthContext";
 import { ServerForm } from "./ServerForm";
-import { ServerList } from "./ListServers";
+import { ServerList } from "./ServerList";
 
 function Sidebar({
   activeServer,
