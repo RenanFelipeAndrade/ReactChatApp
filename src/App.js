@@ -31,6 +31,7 @@ function App() {
               <TextChats
                 setActiveChat={setActiveChat}
                 activeServer={activeServer}
+                setActiveServer={setActiveServer}
                 serversDocs={serversDocs}
                 chats={chats}
                 setChats={setChats}

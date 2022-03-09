@@ -1,11 +1,9 @@
 .sidebar-item {
   @apply transition w-full hover:bg-zinc-600 p-1 rounded break-all;
 }
-
 .chat-button {
   @apply p-1 text-zinc-300 whitespace-nowrap text-ellipsis text-sm hover:text-zinc-100 hover:rounded hover:bg-zinc-800 focus:text-white focus:bg-zinc-700;
 }
-
 .danger-button {
   @apply px-2 py-1 text-sm bg-red-500 rounded-sm hover:bg-red-700 transition w-fit justify-end;
 }
@@ -14,4 +12,16 @@
 }
 .sidebar-container > ul {
   @apply space-y-2;
+}
+.server-control {
+  @apply relative;
+}
+.confirm-button {
+  @apply px-2 py-1 text-sm bg-teal-500 rounded-sm hover:bg-teal-700 transition w-fit;
+}
+.dropdown-button {
+  @apply flex flex-row items-center gap-2 px-1 rounded hover:bg-zinc-700;
+}
+.dropdown-container {
+  @apply absolute bg-zinc-800 rounded px-2 py-1 text-sm text-left flex flex-col shadow-md w-full;
 }

@@ -1,16 +1,19 @@
-import { PlusCircleIcon, UserAddIcon } from "@heroicons/react/outline";
+import { ChevronDownIcon, PlusCircleIcon } from "@heroicons/react/outline";
 import { useEffect } from "react";
 import { ChatForm } from "./ChatForm";
 import Modal, { useModal } from "./Modal";
+import { ServerDropdown, useDropdown } from "./ServerDropdown";
 
 function TextChats({
   activeServer,
   setActiveChat,
+  setActiveServer,
   serversDocs,
   activeChat,
   chats,
   setChats,
 }) {
+  const { isActive, toggleDropdown } = useDropdown();
   const { isVisible, toggleModal } = useModal();
 
   // useEffect para atualizar o componente quando houver alteração nos servidores e no servidor ativo
@@ -19,9 +22,10 @@ function TextChats({
       const server = serversDocs.find(
         (server) => server.id === activeServer.id
       );
+      setActiveServer(server);
       setChats(server.data().chats);
     }
-  }, [activeServer, serversDocs, setChats]);
+  }, [activeServer, setActiveServer, serversDocs, setChats]);
 
   const chatName = chats?.map((chat, index) => {
     return (
@@ -43,31 +47,36 @@ function TextChats({
     );
   });
 
-  function createInvitationLink() {
-    navigator.clipboard.writeText(
-      `${window.location.href}invite/${activeServer.id}`
-    );
-  }
-
   return (
     <>
       <div className="h-screen w-32 p-2 overflow-hidden">
         {activeServer ? (
-          <header className="text-center mb-2 ">
-            <span className="font-bold text-lg">
-              {activeServer.data().serverName}
-            </span>
-            <button type="button" onClick={createInvitationLink}>
-              <UserAddIcon className="w-4 h-4" />
-            </button>
-          </header>
+          <div className="server-control">
+            <header className="mb-2">
+              <span className="font-bold text-lg">
+                {activeServer.data().serverName}
+              </span>
+
+              <button type="button" onClick={toggleDropdown}>
+                <ChevronDownIcon className="h-4 w-4" />
+              </button>
+            </header>
+
+            <ServerDropdown
+              className="dropdown-container "
+              activeServer={activeServer}
+              setActiveServer={setActiveServer}
+              isActive={isActive}
+            />
+
+            <p className="flex flex-row">
+              <small>Chats</small>
+              <button onClick={toggleModal}>
+                <PlusCircleIcon className="w-4 h-4" />
+              </button>
+            </p>
+          </div>
         ) : null}
-        <p className="flex flex-row text-sm">
-          <span>Chats</span>
-          <button onClick={toggleModal}>
-            <PlusCircleIcon className="w-4 h-4" />
-          </button>
-        </p>
         <ul className="space-y-2">
           {chatName ? chatName : <small>Sem chats</small>}
         </ul>

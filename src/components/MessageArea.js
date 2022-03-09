@@ -40,7 +40,7 @@ function MessageArea({ activeChat, activeServer, serverDocs, chats }) {
   }
 
   return (
-    <div className="flex flex-col h-screen justify-between p-2">
+    <div className="flex flex-col w-min h-screen justify-between p-2">
       <main className="space-y-1">{messageList}</main>
       <form onSubmit={handleSubmit(sendMessage)}>
         <div className="flex flex-row">
