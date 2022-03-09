@@ -4,9 +4,15 @@ import { useForm } from "react-hook-form";
 import { db } from "../firebase/init";
 
 export function RenameServerForm({ toggleRenameModal, activeServer }) {
-  const { register, handleSubmit } = useForm();
+  const {
+    register,
+    handleSubmit,
+    setError,
+    formState: { errors },
+  } = useForm();
 
   async function renameServer(data) {
+    if (!data.chatName) return setError("chatName");
     await updateDoc(doc(db, "server", activeServer.id), {
       serverName: data.serverName,
     });
@@ -16,15 +22,24 @@ export function RenameServerForm({ toggleRenameModal, activeServer }) {
       className="px-4 py-3 sm:px-6 sm:flex sm:flex-col"
       onSubmit={handleSubmit(renameServer)}
     >
-      <header className="flex flex-row items-center gap-1">
-        <span className="text-lg">
+      <header className="modal-title">
+        <ServerIcon className="w-4 h-4" />
+        <span>
           Renomeie o <b>{activeServer.data().serverName}</b>
         </span>
-        <ServerIcon className="w-4 h-4" />
       </header>
       <div>
         <label> Nome do servidor </label>
-        <input type="text" className="text-black" {...register("serverName")} />
+        <input
+          type="text"
+          placeholder="Digite o nome do servidor"
+          {...register("serverName")}
+        />
+        {errors.chatName && (
+          <div>
+            <small className="text-red-300">Digite um nome!</small>
+          </div>
+        )}
       </div>
       <section className="space-x-1 my-2">
         <button type="submit" className="confirm-button">

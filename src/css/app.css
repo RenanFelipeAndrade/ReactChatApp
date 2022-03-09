@@ -23,5 +23,23 @@
   @apply flex flex-row items-center gap-2 px-1 rounded hover:bg-zinc-700;
 }
 .dropdown-container {
-  @apply absolute bg-zinc-800 rounded px-2 py-1 text-sm text-left flex flex-col shadow-md w-full;
+  @apply absolute bg-zinc-800 rounded px-2 py-1 text-sm text-left flex flex-col shadow-md w-full z-50;
+}
+.chat-button {
+  @apply my-2 relative flex flex-row justify-between items-center p-1 w-full rounded  text-sm text-zinc-300 hover:text-zinc-100 hover:rounded hover:bg-zinc-800 focus:bg-zinc-700;
+}
+.chat-active {
+  @apply text-white bg-zinc-700;
+}
+.chat-name {
+  @apply whitespace-nowrap text-ellipsis overflow-hidden;
+}
+.modal-container {
+  @apply px-4 py-3 sm:px-6 sm:flex sm:flex-col;
+}
+.modal-title {
+  @apply flex flex-row items-center justify-center mb-3 grow sm:mb-0 space-x-1 text-xl;
+}
+input {
+  @apply w-full px-1  text-white rounded-sm outline-none bg-zinc-700 focus:outline-teal-200 transition-all duration-150 ease-in-out;
 }

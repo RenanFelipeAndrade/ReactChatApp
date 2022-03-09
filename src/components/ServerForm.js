@@ -30,16 +30,15 @@ export class ServerForm extends React.Component {
           onSubmit={this.formSubmitHandler}
           className="overflow-hidden text-left rounded-lg shadow-xl sm:min-w-full bg-zinc-800 transform transition-all"
         >
-          <div className="px-4 py-3 sm:px-6 sm:flex sm:flex-col ">
-            <div className="flex flex-row items-center justify-center mb-3 grow sm:mb-0 space-x-1">
+          <div className="modal-container">
+            <div className="modal-title">
               <ServerIcon className="w-5 h-5" />
-              <h2 className="text-xl">Adicionar servidor</h2>
+              <span>Adicionar servidor</span>
             </div>
 
-            <label className="">Nome do servidor</label>
+            <label>Nome do servidor</label>
             <input
               type={"text"}
-              className="w-full px-1  text-white rounded-sm outline-none bg-zinc-700 focus:outline-teal-200 transition-all duration-150 ease-in-out"
               name="serverName"
               value={this.serverName}
               onChange={this.formChangeHandler}

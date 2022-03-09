@@ -1,6 +1,7 @@
 import { ChevronDownIcon, PlusCircleIcon } from "@heroicons/react/outline";
 import { useEffect } from "react";
 import { ChatForm } from "./ChatForm";
+import { ChatList } from "./ChatList";
 import Modal, { useModal } from "./Modal";
 import { ServerDropdown, useDropdown } from "./ServerDropdown";
 
@@ -27,32 +28,12 @@ function TextChats({
     }
   }, [activeServer, setActiveServer, serversDocs, setChats]);
 
-  const chatName = chats?.map((chat, index) => {
-    return (
-      <li
-        key={index}
-        className="text-center "
-        onClick={() => setActiveChat({ index: index, ...chat })}
-      >
-        {chat.name === activeChat.name ? (
-          <button className="p-1 bg-zinc-700 text-zinc-300 whitespace-nowrap text-ellipsis text-sm ">
-            {chat.name}
-          </button>
-        ) : (
-          <button className="p-1 text-zinc-300 whitespace-nowrap text-ellipsis text-sm hover:text-zinc-100 hover:rounded hover:bg-zinc-800 focus:text-white focus:bg-zinc-700">
-            {chat.name}
-          </button>
-        )}
-      </li>
-    );
-  });
-
   return (
     <>
       <div className="h-screen w-32 p-2 overflow-hidden">
         {activeServer ? (
           <div className="server-control">
-            <header className="mb-2">
+            <header className="mb-2 border-b-2 flex flex-row justify-between">
               <span className="font-bold text-lg">
                 {activeServer.data().serverName}
               </span>
@@ -63,23 +44,26 @@ function TextChats({
             </header>
 
             <ServerDropdown
-              className="dropdown-container "
+              className="dropdown-container"
               activeServer={activeServer}
               setActiveServer={setActiveServer}
               isActive={isActive}
             />
 
-            <p className="flex flex-row">
-              <small>Chats</small>
+            <p className="flex flex-row mb-3 justify-between">
+              <span>Chats</span>
               <button onClick={toggleModal}>
                 <PlusCircleIcon className="w-4 h-4" />
               </button>
             </p>
           </div>
         ) : null}
-        <ul className="space-y-2">
-          {chatName ? chatName : <small>Sem chats</small>}
-        </ul>
+        <ChatList
+          activeChat={activeChat}
+          chats={chats}
+          activeServer={activeServer}
+          setActiveChat={setActiveChat}
+        />
       </div>
       <Modal isVisible={isVisible} toggleModal={toggleModal}>
         <ChatForm activeServer={activeServer} toggleModal={toggleModal} />

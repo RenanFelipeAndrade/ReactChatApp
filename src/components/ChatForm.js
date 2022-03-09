@@ -1,10 +1,18 @@
+import { ChatIcon } from "@heroicons/react/outline";
 import { arrayUnion, doc, updateDoc } from "firebase/firestore";
 import { useForm } from "react-hook-form";
 import { db } from "../firebase/init";
 
 export const ChatForm = ({ toggleModal, activeServer }) => {
-  const { register, handleSubmit } = useForm();
+  const {
+    register,
+    handleSubmit,
+    setError,
+    formState: { errors },
+  } = useForm();
+
   async function createChat(data) {
+    if (!data.chatName) return setError("chatName");
     try {
       await updateDoc(doc(db, "server", activeServer.id), {
         chats: arrayUnion({ name: data.chatName, messages: [] }),
@@ -16,15 +24,23 @@ export const ChatForm = ({ toggleModal, activeServer }) => {
   return (
     <>
       <form onSubmit={handleSubmit(createChat)}>
-        <div className="px-4 py-3 sm:px-6 sm:flex sm:flex-col">
+        <div className="modal-container">
+          <header className="modal-title">
+            <ChatIcon className="w-4 h-4" />
+            <span>Adicionar um chat</span>
+          </header>
           <label htmlFor="chatName">Nome do chat</label>
           <input
             type="text"
-            name="chatName"
             id="chatName"
-            className="text-black"
             {...register("chatName")}
+            placeholder="Digite um nome ao chat"
           />
+          {errors.chatName && (
+            <div>
+              <small className="text-red-300">Digite um nome!</small>
+            </div>
+          )}
           <div className="min-w-full space-x-1 mt-2">
             <button
               type="submit"

@@ -18,7 +18,7 @@ function MessageArea({ activeChat, activeServer, serverDocs, chats }) {
   }, [activeChat, serverDocs, chats]);
 
   const messageList = messages?.map((message, index) => (
-    <div key={index} className="border-l break-all border-teal-500 px-1">
+    <div key={index} className="border-l border-teal-500 px-1">
       <small className="underline">{message.user}</small>
       <p className="text-sm"> {message.content} </p>
     </div>
@@ -45,7 +45,6 @@ function MessageArea({ activeChat, activeServer, serverDocs, chats }) {
       <form onSubmit={handleSubmit(sendMessage)}>
         <div className="flex flex-row">
           <input
-            className="rounded-l-sm px-2 w-full bg-zinc-700 text-white outline-teal-200 outline-1 transition-all duration-500 ease-in"
             placeholder="Digite a mensagem"
             type={"text"}
             {...register("message")}
