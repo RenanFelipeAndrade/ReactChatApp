@@ -5,7 +5,11 @@ import { createServer } from "../firebase/createServer";
 export class ServerForm extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { serverName: "", currentUser: this.props.currentUser };
+    this.state = {
+      serverName: "",
+      currentUser: this.props.currentUser,
+      serverNameError: false,
+    };
     this.formChangeHandler = this.formChangeHandler.bind(this);
     this.formSubmitHandler = this.formSubmitHandler.bind(this);
   }
@@ -14,6 +18,8 @@ export class ServerForm extends React.Component {
   }
   formSubmitHandler(event) {
     event.preventDefault();
+    if (this.state.serverName === "")
+      return this.setState({ serverNameError: true });
     createServer(this.state);
   }
 
@@ -33,14 +39,19 @@ export class ServerForm extends React.Component {
             <label className="">Nome do servidor</label>
             <input
               type={"text"}
-              className="w-full px-1 my-2 text-white rounded-sm outline-none bg-zinc-700 focus:outline-teal-200 transition-all duration-150 ease-in-out"
+              className="w-full px-1  text-white rounded-sm outline-none bg-zinc-700 focus:outline-teal-200 transition-all duration-150 ease-in-out"
               name="serverName"
               value={this.serverName}
               onChange={this.formChangeHandler}
               placeholder="Digite o nome do servidor"
             ></input>
+            {this.state.serverNameError && (
+              <div>
+                <small className="text-red-300">Digite um nome!</small>
+              </div>
+            )}
 
-            <div className="min-w-full space-x-1 ">
+            <div className="min-w-full space-x-1 mt-2 ">
               <button
                 type="submit"
                 className="px-2 py-1 text-sm bg-teal-500 rounded-sm hover:bg-teal-700 transition w-fit"
