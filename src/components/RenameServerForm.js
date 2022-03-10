@@ -12,7 +12,7 @@ export function RenameServerForm({ toggleRenameModal, activeServer }) {
   } = useForm();
 
   async function renameServer(data) {
-    if (!data.chatName) return setError("chatName");
+    if (!data.serverName) return setError("chatName");
     await updateDoc(doc(db, "server", activeServer.id), {
       serverName: data.serverName,
     });
