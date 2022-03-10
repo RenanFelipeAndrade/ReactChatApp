@@ -6,10 +6,7 @@ export const ServerList = ({ serversDocs, setActiveServer, activeServer }) => {
       onClick={() => setActiveServer(serverDoc)}
     >
       {serverDoc.id === activeServer?.id ? (
-        <button
-          type="button"
-          className=" bg-zinc-600 transition w-full p-1 rounded break-all"
-        >
+        <button type="button" className="sidebar-item-active ">
           {serverDoc.data().serverName}
         </button>
       ) : (

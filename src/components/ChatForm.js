@@ -26,7 +26,7 @@ export const ChatForm = ({ toggleModal, activeServer }) => {
       <form onSubmit={handleSubmit(createChat)}>
         <div className="modal-container">
           <header className="modal-title">
-            <ChatIcon className="w-4 h-4" />
+            <ChatIcon className="intermediate-icon" />
             <span>Adicionar um chat</span>
           </header>
           <label htmlFor="chatName">Nome do chat</label>

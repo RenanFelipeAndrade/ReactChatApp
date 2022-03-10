@@ -48,9 +48,7 @@ export default function Modal({ isVisible, toggleModal, children }) {
             leaveFrom="opacity-100"
             leaveTo="opacity-0"
           >
-            <div className="overflow-hidden text-left rounded-lg shadow-xl sm:min-w-full bg-zinc-800 transform transition-all">
-              {children}
-            </div>
+            <div className="modal-children">{children}</div>
           </Transition.Child>
         </div>
       </Dialog>

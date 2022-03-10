@@ -35,11 +35,9 @@ export const ChatList = ({
               {/* cria um botão de excluir chat */}
 
               <span className="group" onClick={deleteChat}>
-                <TrashIcon className="w-4 h-4" />
+                <TrashIcon className="small-icon" />
                 {/* aparece quando der hover no ícone de lixeira */}
-                <small className="absolute transition-all bg-zinc-800 -top-5 rounded shadow px-1 right-0 hidden group-hover:block">
-                  Remover Chat
-                </small>
+                <small className="delete-tooltip">Remover Chat</small>
               </span>
             </button>
           ) : (
@@ -49,6 +47,11 @@ export const ChatList = ({
               className="chat-button"
             >
               <span className="chat-name">{chat.name}</span>
+              <span className="group" onClick={deleteChat}>
+                <TrashIcon className="small-icon" />
+                {/* aparece quando der hover no ícone de lixeira */}
+                <small className="delete-tooltip">Remover Chat</small>
+              </span>
             </button>
           )}
         </li>

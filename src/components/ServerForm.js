@@ -32,7 +32,7 @@ export class ServerForm extends React.Component {
         >
           <div className="modal-container">
             <div className="modal-title">
-              <ServerIcon className="w-5 h-5" />
+              <ServerIcon className="intermediate-icon" />
               <span>Adicionar servidor</span>
             </div>
 

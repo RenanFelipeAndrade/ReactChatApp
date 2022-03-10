@@ -1,44 +1,111 @@
-.sidebar-item {
-  @apply transition w-full hover:bg-zinc-600 p-1 rounded break-all;
+body,
+#body {
+  @apply overflow-hidden scroll-smooth;
 }
-.chat-button {
-  @apply p-1 text-zinc-300 whitespace-nowrap text-ellipsis text-sm hover:text-zinc-100 hover:rounded hover:bg-zinc-800 focus:text-white focus:bg-zinc-700;
+.icon {
+  @apply w-8 h-8;
 }
-.danger-button {
-  @apply px-2 py-1 text-sm bg-red-500 rounded-sm hover:bg-red-700 transition w-fit justify-end;
+.small-icon {
+  @apply w-4 h-4;
+}
+.intermediate-icon {
+  @apply w-6 h-6;
+}
+.menu {
+  @apply -translate-x-64 sm:translate-x-0 fixed sm:static h-full transition-transform duration-700;
+}
+.menu-active {
+  @apply translate-x-0;
+}
+#menu-button {
+  @apply inline-block sm:hidden;
+}
+.menu {
+  @apply flex flex-row;
 }
 .sidebar-container {
-  @apply bg-zinc-700 w-fit h-screen flex flex-col justify-between p-2;
+  @apply bg-zinc-700  w-28 xl:w-40 flex flex-col justify-between p-1 sm:p-2;
+}
+.sidebar-container > .danger-button {
+  @apply mx-auto xl:text-base 3xl:text-xl xl:px-4;
 }
 .sidebar-container > ul {
-  @apply space-y-2;
+  @apply space-y-2 overflow-y-auto;
+}
+.sidebar-item {
+  @apply transition flex flex-row justify-center w-full whitespace-nowrap 3xl:text-xl text-ellipsis overflow-hidden hover:bg-zinc-600 p-1 rounded break-all;
+}
+.sidebar-item-active {
+  @apply bg-zinc-600 transition w-full p-1 rounded break-all 3xl:text-xl;
+}
+.danger-button {
+  @apply px-2 py-1 text-sm  bg-red-500 rounded-sm hover:bg-red-700 transition w-fit justify-end;
 }
 .server-control {
-  @apply relative;
+  @apply relative 3xl:text-xl;
+}
+.server-control-header {
+  @apply mb-2 border-b-2 flex flex-row justify-between;
+}
+.server-control-title {
+  @apply font-bold text-lg text-ellipsis overflow-hidden 3xl:text-2xl;
 }
 .confirm-button {
   @apply px-2 py-1 text-sm bg-teal-500 rounded-sm hover:bg-teal-700 transition w-fit;
 }
-.dropdown-button {
-  @apply flex flex-row items-center gap-2 px-1 rounded hover:bg-zinc-700;
-}
 .dropdown-container {
-  @apply absolute bg-zinc-800 rounded px-2 py-1 text-sm text-left flex flex-col shadow-md w-full z-50;
+  @apply absolute bg-zinc-800 rounded px-2 py-1 text-sm text-left flex flex-col shadow-md xl:shadow-xl w-full z-50;
+}
+.dropdown-button {
+  @apply flex flex-row items-center gap-2 xl:space-y-2 px-1 rounded hover:bg-zinc-700;
+}
+.chat-container {
+  @apply w-36  sm:p-2 xl:w-52 p-1 flex flex-col bg-zinc-800;
+}
+.chat-list {
+  @apply space-y-1 overflow-y-auto;
+}
+.add-chat-section {
+  @apply flex flex-row mb-3 justify-between;
 }
 .chat-button {
-  @apply my-2 relative flex flex-row justify-between items-center p-1 w-full rounded  text-sm text-zinc-300 hover:text-zinc-100 hover:rounded hover:bg-zinc-800 focus:bg-zinc-700;
+  @apply relative flex flex-row justify-between items-center p-1 w-full rounded  text-sm text-zinc-300 hover:text-zinc-100 hover:rounded hover:bg-zinc-800 focus:bg-zinc-700;
 }
 .chat-active {
   @apply text-white bg-zinc-700;
+}
+.delete-tooltip {
+  @apply absolute transition-all bg-zinc-800 -top-5 rounded shadow px-1 right-0 hidden group-hover:block;
 }
 .chat-name {
   @apply whitespace-nowrap text-ellipsis overflow-hidden;
 }
 .modal-container {
-  @apply px-4 py-3 sm:px-6 sm:flex sm:flex-col;
+  @apply px-4 py-3 sm:px-6 sm:flex sm:flex-col xl:text-lg;
+}
+.modal-children {
+  @apply overflow-hidden text-left rounded-lg shadow-xl sm:min-w-full bg-zinc-800 transform transition-all;
 }
 .modal-title {
-  @apply flex flex-row items-center justify-center mb-3 grow sm:mb-0 space-x-1 text-xl;
+  @apply flex flex-row items-center justify-center mb-3 grow sm:mb-0 space-x-1 text-xl xl:text-2xl;
+}
+.message-container {
+  @apply p-1 pl-8 sm:p-2 flex flex-col justify-between h-full w-full;
+}
+.message-container > ul {
+  @apply overflow-y-auto space-y-1 flex flex-col pr-3  pb-2;
+}
+.other-user-message {
+  @apply border-l border-teal-500 px-1 break-all;
+}
+.logged-user-message {
+  @apply self-end border-r-red-500  border-r px-1 break-all flex flex-col;
+}
+.logged-user-message > small {
+  @apply hidden;
+}
+.message-container > ul > li {
+  @apply bg-zinc-800 rounded w-52 sm:w-72 md:min-w-fit text-sm py-1 px-3 md:text-base 3xl:text-xl;
 }
 input {
   @apply w-full px-1  text-white rounded-sm outline-none bg-zinc-700 focus:outline-teal-200 transition-all duration-150 ease-in-out;

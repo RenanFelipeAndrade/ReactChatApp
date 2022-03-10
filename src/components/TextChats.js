@@ -30,16 +30,16 @@ function TextChats({
 
   return (
     <>
-      <div className="h-screen w-32 p-2 overflow-hidden">
+      <div className="chat-container">
         {activeServer ? (
           <div className="server-control">
-            <header className="mb-2 border-b-2 flex flex-row justify-between">
-              <span className="font-bold text-lg">
+            <header className="server-control-header">
+              <span className="server-control-title">
                 {activeServer.data().serverName}
               </span>
 
               <button type="button" onClick={toggleDropdown}>
-                <ChevronDownIcon className="h-4 w-4" />
+                <ChevronDownIcon className="small-icon" />
               </button>
             </header>
 
@@ -50,12 +50,12 @@ function TextChats({
               isActive={isActive}
             />
 
-            <p className="flex flex-row mb-3 justify-between">
+            <section className="add-chat-section">
               <span>Chats</span>
               <button onClick={toggleModal}>
-                <PlusCircleIcon className="w-4 h-4" />
+                <PlusCircleIcon className="small-icon" />
               </button>
-            </p>
+            </section>
           </div>
         ) : null}
         <ChatList

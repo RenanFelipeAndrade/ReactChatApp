@@ -33,7 +33,7 @@ function Sidebar({
         />
         <li onClick={toggleModal}>
           <button type="button" className="sidebar-item">
-            <PlusIcon className="w-8 h-8" />
+            <PlusIcon className="icon" />
           </button>
         </li>
       </ul>

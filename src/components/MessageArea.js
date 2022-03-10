@@ -17,12 +17,19 @@ function MessageArea({ activeChat, activeServer, serverDocs, chats }) {
     }
   }, [activeChat, serverDocs, chats]);
 
-  const messageList = messages?.map((message, index) => (
-    <div key={index} className="border-l border-teal-500 px-1">
-      <small className="underline">{message.user}</small>
-      <p className="text-sm"> {message.content} </p>
-    </div>
-  ));
+  const messageList = messages?.map((message, index) =>
+    message.user === userData.displayName ? (
+      <li key={index} className="logged-user-message">
+        <small className="underline">{message.user}</small>
+        <p> {message.content} </p>
+      </li>
+    ) : (
+      <li key={index} className="other-user-message">
+        <small className="underline">{message.user}</small>
+        <p> {message.content} </p>
+      </li>
+    )
+  );
 
   async function sendMessage(data) {
     // por limitações da firebase, reescreve-se todo o array "chats" com as novas mensagens para cada atualização
@@ -40,22 +47,20 @@ function MessageArea({ activeChat, activeServer, serverDocs, chats }) {
   }
 
   return (
-    <div className="flex flex-col w-min h-screen justify-between p-2">
-      <main className="space-y-1">{messageList}</main>
-      <form onSubmit={handleSubmit(sendMessage)}>
-        <div className="flex flex-row">
-          <input
-            placeholder="Digite a mensagem"
-            type={"text"}
-            {...register("message")}
-          />
-          <button
-            className="rounded-r-sm bg-teal-500 text-sm px-1"
-            type="submit"
-          >
-            Enviar
-          </button>
-        </div>
+    <div className="message-container">
+      <ul>{messageList}</ul>
+      <form
+        className="flex flex-row justify-self-end"
+        onSubmit={handleSubmit(sendMessage)}
+      >
+        <input
+          placeholder="Digite a mensagem"
+          type={"text"}
+          {...register("message")}
+        />
+        <button className="rounded-r-sm bg-teal-500 text-sm px-1" type="submit">
+          Enviar
+        </button>
       </form>
     </div>
   );

@@ -23,7 +23,7 @@ export function RenameServerForm({ toggleRenameModal, activeServer }) {
       onSubmit={handleSubmit(renameServer)}
     >
       <header className="modal-title">
-        <ServerIcon className="w-4 h-4" />
+        <ServerIcon className="intermediate-icon" />
         <span>
           Renomeie o <b>{activeServer.data().serverName}</b>
         </span>
