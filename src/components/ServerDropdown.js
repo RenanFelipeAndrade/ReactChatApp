@@ -1,5 +1,6 @@
 import { TrashIcon, PencilIcon, UserAddIcon } from "@heroicons/react/outline";
 import { useState } from "react";
+import { useLocation } from "react-router";
 import { ConfirmDelete } from "./ConfirmDelete";
 import Modal, { useModal } from "./Modal";
 import { RenameServerForm } from "./RenameServerForm";
@@ -25,10 +26,12 @@ export function ServerDropdown({
   const { isVisible: isRenameModalVisible, toggleModal: toggleRenameModal } =
     useModal();
   const [copied, setCopied] = useState(false);
+  const location = useLocation();
 
   function createInviteLink() {
+    const baseUrl = window.location.origin;
     navigator.clipboard.writeText(
-      `${window.location.href}invite/${activeServer.id}`
+      `${baseUrl}${location.pathname}invite/${activeServer.id}`
     );
     setCopied(true);
     setTimeout(() => setCopied(false), 1000);
