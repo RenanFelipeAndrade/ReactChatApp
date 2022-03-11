@@ -18,7 +18,7 @@ function Sidebar({
   const { userData } = useAuth();
   const { isVisible, toggleModal } = useModal();
 
-  // useeffect para atualizar os servidores quando um novo for criado
+  // useeffect para atualizar os servidores em tempo real
   useEffect(() => {
     serverListener(userData, setServersDocs);
   }, [userData, setServersDocs]);
