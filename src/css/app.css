@@ -107,6 +107,18 @@ body,
 .message-container > ul > li {
   @apply bg-zinc-800 rounded w-52 sm:w-72 md:min-w-fit text-sm py-1 px-3 md:text-base 3xl:text-xl;
 }
+.invite-container {
+  @apply flex flex-col justify-center items-center px-6;
+}
+.invite-header {
+  @apply text-lg mb-2;
+}
+.invite-container > ul {
+  @apply overflow-y-auto bg-zinc-800 shadow px-3 py-2 rounded;
+}
+.invite-container > ul > h4 {
+  @apply text-center border-b;
+}
 input {
   @apply w-full px-1  text-white rounded-sm outline-none bg-zinc-700 focus:outline-teal-200 transition-all duration-150 ease-in-out;
 }

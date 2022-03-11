@@ -1,5 +1,6 @@
 import { arrayUnion, doc, getDoc, updateDoc } from "firebase/firestore";
 import { useEffect, useState } from "react";
+import Div100vh from "react-div-100vh";
 import { useNavigate, useParams } from "react-router";
 import { useAuth } from "../context/AuthContext";
 import { db } from "../firebase/init";
@@ -15,6 +16,7 @@ export function Invite() {
     getDoc(doc(db, "server", params.server)).then((doc) => setServer(doc));
   }, [setServer, params.server]);
 
+  const numberOfParticipants = server?.data().participantsId.length - 1;
   const participantsList = server
     ?.data()
     .participantsObject.map((participant) => (
@@ -22,22 +24,15 @@ export function Invite() {
     ));
 
   return (
-    <div>
-      <header>
-        <h2>
-          Você foi convidado a participar de <b>{server?.data().serverName}</b>
-        </h2>
+    <Div100vh className="invite-container">
+      <header className="invite-header">
+        <span>Você foi convidado a participar de </span>
+        <b className="underline">{server?.data().serverName}</b>
       </header>
-      <main>
-        <div>
-          <h4>
-            Dono do servidor: <b>{server?.data().owner.displayName}</b>
-          </h4>
-        </div>
-
-        <h4>Participantes:</h4>
-        <ul>{participantsList}</ul>
-      </main>
+      <ul>
+        <h4>Participantes ({numberOfParticipants}):</h4>
+        {participantsList}
+      </ul>
       <section className="min-w-full space-x-1 text-center mt-2">
         <button
           type="button"
@@ -63,6 +58,6 @@ export function Invite() {
           Cancelar
         </button>
       </section>
-    </div>
+    </Div100vh>
   );
 }
