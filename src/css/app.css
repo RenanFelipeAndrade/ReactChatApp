@@ -12,7 +12,7 @@ body,
   @apply w-6 h-6;
 }
 .menu {
-  @apply -translate-x-64 sm:translate-x-0 fixed sm:static h-full transition-transform duration-700;
+  @apply -translate-x-64 sm:translate-x-0 fixed sm:static h-full transition-transform duration-500;
 }
 .menu-active {
   @apply translate-x-0;
@@ -96,16 +96,25 @@ body,
   @apply overflow-y-auto space-y-1 flex flex-col pr-3  pb-2;
 }
 .other-user-message {
-  @apply border-l border-teal-500 px-1 break-all;
+  @apply border-l-2 border-teal-500 px-1 break-all;
 }
 .logged-user-message {
-  @apply self-end border-r-red-500  border-r px-1 break-all flex flex-col;
+  @apply self-end border-r-red-500  border-r-2 px-1 break-all flex flex-col;
 }
 .logged-user-message > small {
   @apply hidden;
 }
 .message-container > ul > li {
   @apply bg-zinc-800 rounded w-52 sm:w-72 md:min-w-fit text-sm py-1 px-3 md:text-base 3xl:text-xl;
+}
+.selected-chat-indicator {
+  @apply text-center border-b 3xl:text-2xl;
+}
+.message-input-group {
+  @apply flex flex-row justify-self-end;
+}
+.no-active-chat {
+  @apply border-red-500 ring-2 ring-red-500 placeholder:text-red-300;
 }
 .invite-container {
   @apply flex flex-col justify-center items-center px-6;
@@ -119,6 +128,12 @@ body,
 .invite-container > ul > h4 {
   @apply text-center border-b;
 }
+.send-message-button {
+  @apply rounded-r-sm h-fit py-1 self-end bg-teal-500 text-sm px-2;
+}
 input {
   @apply w-full px-1  text-white rounded-sm outline-none bg-zinc-700 focus:outline-teal-200 transition-all duration-150 ease-in-out;
+}
+.message-textarea {
+  @apply resize-y w-full px-1 disabled:bg-zinc-800 disabled:placeholder:text-zinc-500  text-white rounded-sm outline-none bg-zinc-700 transition-all duration-150 ease-in-out focus:ring-1 focus:ring-teal-500;
 }

@@ -1,13 +1,15 @@
 import { doc, updateDoc } from "firebase/firestore";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useAuth } from "../context/AuthContext";
 import { db } from "../firebase/init";
+import { MessageList } from "./MessageList";
 
 function MessageArea({ activeChat, activeServer, serverDocs, chats }) {
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit, resetField } = useForm();
   const { userData } = useAuth();
   const [messages, setMessages] = useState([]);
+  const messagesRef = useRef();
 
   // useffect para atualizar as mensagens em tempo real
   useEffect(() => {
@@ -17,21 +19,8 @@ function MessageArea({ activeChat, activeServer, serverDocs, chats }) {
     }
   }, [activeChat, serverDocs, chats]);
 
-  const messageList = messages?.map((message, index) =>
-    message.user === userData.displayName ? (
-      <li key={index} className="logged-user-message">
-        <small className="underline">{message.user}</small>
-        <p> {message.content} </p>
-      </li>
-    ) : (
-      <li key={index} className="other-user-message">
-        <small className="underline">{message.user}</small>
-        <p> {message.content} </p>
-      </li>
-    )
-  );
-
   async function sendMessage(data) {
+    if (!activeChat.name || !data.message) return;
     // por limitações da firebase, reescreve-se todo o array "chats" com as novas mensagens para cada atualização
     chats[activeChat.index].messages.push({
       content: data.message,
@@ -40,25 +29,53 @@ function MessageArea({ activeChat, activeServer, serverDocs, chats }) {
     try {
       await updateDoc(doc(db, "server", activeServer.id), {
         chats: chats,
+      }).then(() => {
+        // limpa a textarea e desce até a última mensagem
+        resetField("message");
+        scrollDown();
       });
     } catch (error) {
       console.log(error);
     }
   }
 
+  function scrollDown() {
+    messagesRef.current.lastChild.scrollIntoView();
+  }
+
   return (
     <div className="message-container">
-      <ul>{messageList}</ul>
+      <header className="selected-chat-indicator">
+        Chat: {activeChat.name || "Nenhum selecionado"}
+      </header>
+
+      <MessageList
+        scrollDown={scrollDown}
+        messagesRef={messagesRef}
+        messages={messages}
+        userData={userData}
+        activeChat={activeChat}
+      />
+
       <form
-        className="flex flex-row justify-self-end"
+        className="message-input-group"
         onSubmit={handleSubmit(sendMessage)}
       >
-        <input
+        <textarea
+          disabled={!activeChat.name}
+          className="message-textarea"
           placeholder="Digite a mensagem"
-          type={"text"}
           {...register("message")}
+          onKeyDown={(event) => {
+            // se o usuário apertar enter, envia a mensagem
+            // se o usuário apertar shift+enter, cria-se uma nova linha
+            if (event.key === "Enter" && !event.shiftKey) {
+              event.preventDefault();
+              handleSubmit(sendMessage)();
+            }
+          }}
         />
-        <button className="rounded-r-sm bg-teal-500 text-sm px-1" type="submit">
+        <button className="send-message-button" type="submit">
           Enviar
         </button>
       </form>
