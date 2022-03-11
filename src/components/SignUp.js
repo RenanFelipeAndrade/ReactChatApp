@@ -24,8 +24,9 @@ class SingUp extends React.Component {
     // verifica se senha e confimação são diferentes
     if (this.state.password === this.state.confirmPassword) {
       this.setState({ differentPasswordsError: false });
-      // função firebase de cadastro
-      return trySignUp(this.state).then((window.location.href = "/login"));
+      // função de cadastro
+      trySignUp(this.state);
+      return;
     }
     // se são difentes, renderiza mensagem de erro
     this.setState({ differentPasswordsError: true });
