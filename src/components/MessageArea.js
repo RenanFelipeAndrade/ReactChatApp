@@ -21,9 +21,39 @@ function MessageArea({ activeChat, activeServer, serverDocs, chats }) {
 
   async function sendMessage(data) {
     if (!activeChat.name || !data.message) return;
+
+    // retira todos as quebras de linha
+    const splitedMessage = data.message.split("\n");
+    let emptyBeginningLines = 0;
+    for (let index in splitedMessage) {
+      // verifica se a linha atual é vazia e se está antes de qualquer conteúdo
+      if (splitedMessage[index].length === 0 && emptyBeginningLines == index)
+        emptyBeginningLines++;
+      index++;
+    }
+
+    // retira-se as quebras de linha no início da mensagem e inverte a lista
+    const semiCleanMessage = splitedMessage
+      .slice(emptyBeginningLines)
+      .reverse();
+
+    // repete o mesmo processo pelo lado inverso
+    emptyBeginningLines = 0;
+    for (let index in semiCleanMessage) {
+      if (semiCleanMessage[index].length === 0 && emptyBeginningLines == index)
+        emptyBeginningLines++;
+      index++;
+    }
+
+    // retorna a mensagem sem quebras de linha no início e fim
+    const cleanedMessage = semiCleanMessage
+      .slice(emptyBeginningLines)
+      .reverse()
+      .join("\n");
+
     // por limitações da firebase, reescreve-se todo o array "chats" com as novas mensagens para cada atualização
     chats[activeChat.index].messages.push({
-      content: data.message,
+      content: cleanedMessage,
       user: userData.displayName,
     });
     try {
