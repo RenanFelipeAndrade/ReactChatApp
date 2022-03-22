@@ -1,8 +1,9 @@
 import { Navigate } from "react-router";
 import { useAuth } from "../context/AuthContext";
+import { LoadingScreen } from "./LoadingScreen";
 
 export default function RequireAuth({ children }) {
   const { userData, loading } = useAuth();
-  if (loading) return <div>Carregando...</div>;
+  if (loading) return <LoadingScreen />;
   return userData ? children : <Navigate to={"/login"} replace />;
 }

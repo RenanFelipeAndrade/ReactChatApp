@@ -2,6 +2,26 @@ body,
 #body {
   @apply overflow-hidden scroll-smooth;
 }
+#progress-bar {
+  position: absolute;
+  top: calc(50% - 4em);
+  left: calc(50% - 4em);
+  width: 6em;
+  height: 6em;
+  border: 1.1em solid rgba(0, 0, 0, 0.2);
+  border-left: 1.1em solid #3f3f46;
+  border-radius: 50%;
+  animation: progress-animation 1.1s infinite linear;
+  transition: opacity 0.3s;
+}
+@keyframes progress-animation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
 .icon {
   @apply w-8 h-8;
 }
@@ -133,6 +153,9 @@ body,
 }
 .message-textarea {
   @apply resize-y w-full px-1 disabled:bg-zinc-800 disabled:placeholder:text-zinc-500  text-white rounded-sm bg-zinc-700 transition-all duration-150 ease-in-out focus:ring-1 focus:ring-teal-500;
+}
+#loading {
+  @apply fixed h-screen w-screen bg-zinc-900 p-10;
 }
 input {
   @apply w-full px-1  text-white rounded-sm border-none focus:ring-2 outline-none focus:ring-teal-500 bg-zinc-700  transition-all duration-150  ease-in-out;

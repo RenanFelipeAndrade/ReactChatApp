@@ -3,7 +3,11 @@ import { collection, onSnapshot, query, where } from "firebase/firestore";
 
 // função para observar os servidores que o usuário participa
 // ela é resposável por atualizar os servidores em tempo real
-export default async function serverListener(userData, setServersDocs) {
+export default async function serverListener(
+  userData,
+  setServersDocs,
+  setLoading
+) {
   const q = query(
     collection(db, "server"),
     where("participantsId", "array-contains", userData.uid)
@@ -16,4 +20,5 @@ export default async function serverListener(userData, setServersDocs) {
     });
     setServersDocs(servers);
   });
+  setLoading(false);
 }

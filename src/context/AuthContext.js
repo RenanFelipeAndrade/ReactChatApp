@@ -17,7 +17,9 @@ export function AuthContextProvider({ children }) {
     return unsubscribe;
   }, []);
   return (
-    <AuthContext.Provider value={{ userData, setUserData, loading }}>
+    <AuthContext.Provider
+      value={{ userData, setUserData, loading, setLoading }}
+    >
       {children}
     </AuthContext.Provider>
   );

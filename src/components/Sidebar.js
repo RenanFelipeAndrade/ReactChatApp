@@ -3,9 +3,9 @@ import { PlusIcon } from "@heroicons/react/outline";
 import { getAuth, signOut } from "firebase/auth";
 import { Navigate } from "react-router";
 import Modal, { useModal } from "./Modal";
-import { useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import serverListener from "../firebase/serverListener";
-import { useAuth } from "../context/AuthContext";
+import { AuthContext, useAuth } from "../context/AuthContext";
 import { ServerForm } from "./ServerForm";
 import { ServerList } from "./ServerList";
 
@@ -17,11 +17,12 @@ function Sidebar({
 }) {
   const { userData } = useAuth();
   const { isVisible, toggleModal } = useModal();
+  const { setLoading } = useContext(AuthContext);
 
   // useeffect para atualizar os servidores em tempo real
   useEffect(() => {
-    serverListener(userData, setServersDocs);
-  }, [userData, setServersDocs]);
+    serverListener(userData, setServersDocs, setLoading);
+  }, [userData, setServersDocs, setLoading]);
 
   return (
     <div className="sidebar-container">
