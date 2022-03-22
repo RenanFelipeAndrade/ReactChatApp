@@ -26,3 +26,7 @@ yarn-error.log*
 # css maps
 .sass-cache/
 *.css.map
+
+# firebase related
+.firebase
+firebase-debug.log*
