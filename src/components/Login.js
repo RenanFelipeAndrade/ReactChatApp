@@ -9,6 +9,8 @@ export default class Login extends React.Component {
     this.state = {
       email: "",
       password: "",
+      wrongPasswordError: false,
+      emailNotFoundError: false,
     };
     // funções ativadas por eventos
     this.formChangeHandler = this.formChangeHandler.bind(this);
@@ -18,7 +20,13 @@ export default class Login extends React.Component {
   formSubmitHandler(event) {
     event.preventDefault();
     // função firebase para login
-    trySignIn(this.state);
+    this.setState({ wrongPasswordError: false });
+    trySignIn(this.state).catch((error) => {
+      if (error.code === "auth/wrong-password")
+        return this.setState({ wrongPasswordError: true });
+      if (error.code === "auth/user-not-found")
+        return this.setState({ emailNotFoundError: true });
+    });
   }
 
   formChangeHandler(event) {
@@ -49,6 +57,9 @@ export default class Login extends React.Component {
               name="email"
               placeholder="Digite o email"
             ></input>
+            {this.state.emailNotFoundError && (
+              <small className="text-red-500">O email não existe!</small>
+            )}
 
             <label>Senha</label>
             <input
@@ -58,6 +69,11 @@ export default class Login extends React.Component {
               className="rounded-sm px-2 w-full bg-zinc-700 text-white focus:outline-teal-200 outline-none transition-all duration-150 ease-in-out"
               placeholder="Digite a senha"
             ></input>
+            {this.state.wrongPasswordError && (
+              <div>
+                <small className="text-red-500">A senha está errada</small>
+              </div>
+            )}
           </div>
 
           <div className="min-w-full mt-2">

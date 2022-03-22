@@ -13,6 +13,7 @@ class SingUp extends React.Component {
       password: "",
       confirmPassword: "",
       differentPasswordsError: false,
+      alreadyExistsError: false,
     };
     // funções ativadas por eventos
     this.formChangeHandler = this.formChangeHandler.bind(this);
@@ -24,8 +25,13 @@ class SingUp extends React.Component {
     // verifica se senha e confimação são diferentes
     if (this.state.password === this.state.confirmPassword) {
       this.setState({ differentPasswordsError: false });
+      this.setState({ alreadyExistsError: false });
       // função de cadastro
-      trySignUp(this.state);
+      trySignUp(this.state).catch((error) => {
+        if (error.code === "auth/email-already-in-use")
+          this.setState({ alreadyExistsError: true });
+      });
+
       return;
     }
     // se são difentes, renderiza mensagem de erro
@@ -48,6 +54,7 @@ class SingUp extends React.Component {
         <header>
           <h1 className="text-3xl">Olá visitante!</h1>
         </header>
+
         <form className="p-3 w-fit" onSubmit={this.formSubmitHandler}>
           <div className="flex flex-col ">
             <label>Usuário</label>
@@ -71,6 +78,9 @@ class SingUp extends React.Component {
               placeholder="Digite o email"
               required
             ></input>
+            {this.state.alreadyExistsError && (
+              <small className="text-red-500">O email já existe!</small>
+            )}
 
             <label>Senha</label>
             <input
