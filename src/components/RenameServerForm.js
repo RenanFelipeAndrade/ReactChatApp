@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import { db } from "../firebase/init";
 import { ButtonGroup } from "./ButtonGroup";
 import { CancelButton } from "./Buttons/CancelButton";
-import { SubmitButton } from "./Buttons/SubmitButton";
+import { ConfirmButton } from "./Buttons/ConfirmButton";
 
 export function RenameServerForm({ toggleRenameModal, activeServer }) {
   const {
@@ -45,7 +45,7 @@ export function RenameServerForm({ toggleRenameModal, activeServer }) {
         )}
       </div>
       <ButtonGroup>
-        <SubmitButton>Confirmar</SubmitButton>
+        <ConfirmButton submit>Confirmar</ConfirmButton>
         <CancelButton onClick={toggleRenameModal}>Cancelar</CancelButton>
       </ButtonGroup>
     </form>

@@ -3,7 +3,7 @@ import React from "react";
 import { createServer } from "../firebase/createServer";
 import { ButtonGroup } from "./ButtonGroup";
 import { CancelButton } from "./Buttons/CancelButton";
-import { SubmitButton } from "./Buttons/SubmitButton";
+import { ConfirmButton } from "./Buttons/ConfirmButton";
 
 export class ServerForm extends React.Component {
   constructor(props) {
@@ -54,7 +54,7 @@ export class ServerForm extends React.Component {
             )}
 
             <ButtonGroup>
-              <SubmitButton>Confirmar</SubmitButton>
+              <ConfirmButton submit>Confirmar</ConfirmButton>
               <CancelButton onClick={this.props.toggleModal}>
                 Cancelar
               </CancelButton>

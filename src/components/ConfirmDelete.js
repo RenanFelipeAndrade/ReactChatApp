@@ -1,5 +1,8 @@
 import { deleteDoc, doc } from "firebase/firestore";
 import { db } from "../firebase/init";
+import { ButtonGroup } from "./ButtonGroup";
+import { CancelButton } from "./Buttons/CancelButton";
+import { ConfirmButton } from "./Buttons/ConfirmButton";
 
 export function ConfirmDelete({
   activeServer,
@@ -14,18 +17,10 @@ export function ConfirmDelete({
   return (
     <div className="px-4 py-3 sm:px-6 sm:flex sm:flex-col">
       <header> Deseja realmente excluir o servidor ? </header>
-      <section className="space-x-1 my-2">
-        <button type="button" className="confirm-button" onClick={deleteServer}>
-          Deletar
-        </button>
-        <button
-          type="button"
-          className="danger-button"
-          onClick={toggleDeleteModal}
-        >
-          Cancelar
-        </button>
-      </section>
+      <ButtonGroup>
+        <ConfirmButton onClick={deleteServer}>Deletar</ConfirmButton>
+        <CancelButton onClick={toggleDeleteModal}>Cancelar</CancelButton>
+      </ButtonGroup>
     </div>
   );
 }

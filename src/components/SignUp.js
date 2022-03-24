@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import trySignUp from "../firebase/trySignUp";
 import "../firebase/init";
-import { SubmitButton } from "./Buttons/SubmitButton";
+import { ConfirmButton } from "./Buttons/ConfirmButton";
 import { ButtonGroup } from "./ButtonGroup";
 
 class SingUp extends React.Component {
@@ -119,7 +119,7 @@ class SingUp extends React.Component {
           </div>
 
           <ButtonGroup>
-            <SubmitButton>Confirmar</SubmitButton>
+            <ConfirmButton submit>Confirmar</ConfirmButton>
           </ButtonGroup>
           <div className="mt-2">
             <small>

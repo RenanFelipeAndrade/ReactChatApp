@@ -3,7 +3,7 @@ import { arrayUnion, doc, updateDoc } from "firebase/firestore";
 import { useForm } from "react-hook-form";
 import { db } from "../firebase/init";
 import { ButtonGroup } from "./ButtonGroup";
-import { SubmitButton } from "./Buttons/SubmitButton";
+import { ConfirmButton } from "./Buttons/ConfirmButton";
 import { CancelButton } from "./Buttons/CancelButton";
 
 export const ChatForm = ({ toggleModal, activeServer }) => {
@@ -45,7 +45,7 @@ export const ChatForm = ({ toggleModal, activeServer }) => {
             </div>
           )}
           <ButtonGroup>
-            <SubmitButton>Confirmar</SubmitButton>
+            <ConfirmButton submit>Confirmar</ConfirmButton>
             <CancelButton onClick={toggleModal}>Cancelar</CancelButton>
           </ButtonGroup>
         </div>

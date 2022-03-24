@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import trySignIn from "../firebase/trySignIn";
 import { ButtonGroup } from "./ButtonGroup";
-import { SubmitButton } from "./Buttons/SubmitButton";
+import { ConfirmButton } from "./Buttons/ConfirmButton";
 
 export default class Login extends React.Component {
   constructor() {
@@ -79,7 +79,7 @@ export default class Login extends React.Component {
           </div>
 
           <ButtonGroup>
-            <SubmitButton>Confirmar</SubmitButton>
+            <ConfirmButton submit>Confirmar</ConfirmButton>
           </ButtonGroup>
           <div className="text-center mt-2">
             <small>
