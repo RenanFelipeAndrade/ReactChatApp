@@ -101,7 +101,7 @@ body,
   @apply whitespace-nowrap text-ellipsis overflow-hidden;
 }
 .modal-container {
-  @apply px-4 py-3 sm:px-6 sm:flex sm:flex-col xl:text-lg;
+  @apply px-4 py-2 sm:px-6 sm:flex sm:flex-col xl:text-lg;
 }
 .modal-children {
   @apply overflow-hidden text-left rounded-lg shadow-xl sm:min-w-full bg-zinc-800 transform transition-all;
