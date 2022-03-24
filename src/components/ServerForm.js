@@ -1,6 +1,9 @@
 import { ServerIcon } from "@heroicons/react/outline";
 import React from "react";
 import { createServer } from "../firebase/createServer";
+import { ButtonGroup } from "./ButtonGroup";
+import { CancelButton } from "./Buttons/CancelButton";
+import { SubmitButton } from "./Buttons/SubmitButton";
 
 export class ServerForm extends React.Component {
   constructor(props) {
@@ -50,21 +53,12 @@ export class ServerForm extends React.Component {
               </div>
             )}
 
-            <div className="min-w-full space-x-1 mt-2 ">
-              <button
-                type="submit"
-                className="px-2 py-1 text-sm bg-teal-500 rounded-sm hover:bg-teal-700 transition w-fit"
-              >
-                Confirmar
-              </button>
-              <button
-                onClick={this.props.toggleModal}
-                type="button"
-                className="px-2 py-1 text-sm bg-red-500 rounded-sm hover:bg-red-700 transition w-fit"
-              >
+            <ButtonGroup>
+              <SubmitButton>Confirmar</SubmitButton>
+              <CancelButton onClick={this.props.toggleModal}>
                 Cancelar
-              </button>
-            </div>
+              </CancelButton>
+            </ButtonGroup>
           </div>
         </form>
       </div>

@@ -2,6 +2,9 @@ import { ServerIcon } from "@heroicons/react/outline";
 import { doc, updateDoc } from "firebase/firestore";
 import { useForm } from "react-hook-form";
 import { db } from "../firebase/init";
+import { ButtonGroup } from "./ButtonGroup";
+import { CancelButton } from "./Buttons/CancelButton";
+import { SubmitButton } from "./Buttons/SubmitButton";
 
 export function RenameServerForm({ toggleRenameModal, activeServer }) {
   const {
@@ -41,18 +44,10 @@ export function RenameServerForm({ toggleRenameModal, activeServer }) {
           </div>
         )}
       </div>
-      <section className="space-x-1 my-2">
-        <button type="submit" className="confirm-button">
-          Renomear
-        </button>
-        <button
-          type="button"
-          className="danger-button"
-          onClick={toggleRenameModal}
-        >
-          Cancelar
-        </button>
-      </section>
+      <ButtonGroup>
+        <SubmitButton>Confirmar</SubmitButton>
+        <CancelButton onClick={toggleRenameModal}>Cancelar</CancelButton>
+      </ButtonGroup>
     </form>
   );
 }

@@ -2,6 +2,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 import trySignUp from "../firebase/trySignUp";
 import "../firebase/init";
+import { SubmitButton } from "./Buttons/SubmitButton";
+import { ButtonGroup } from "./ButtonGroup";
 
 class SingUp extends React.Component {
   constructor() {
@@ -116,14 +118,9 @@ class SingUp extends React.Component {
             )}
           </div>
 
-          <div className="min-w-full mt-2">
-            <button
-              type="submit"
-              className="rounded-sm bg-teal-500 hover:bg-teal-700 transition text-sm py-1 w-full"
-            >
-              Confirmar
-            </button>
-          </div>
+          <ButtonGroup>
+            <SubmitButton>Confirmar</SubmitButton>
+          </ButtonGroup>
           <div className="mt-2">
             <small>
               Tem uma conta? Faça login{" "}

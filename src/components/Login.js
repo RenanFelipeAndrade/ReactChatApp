@@ -1,6 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import trySignIn from "../firebase/trySignIn";
+import { ButtonGroup } from "./ButtonGroup";
+import { SubmitButton } from "./Buttons/SubmitButton";
 
 export default class Login extends React.Component {
   constructor() {
@@ -76,14 +78,9 @@ export default class Login extends React.Component {
             )}
           </div>
 
-          <div className="min-w-full mt-2">
-            <button
-              type="submit"
-              className="rounded-sm bg-teal-500 hover:bg-teal-700 transition text-sm py-1 w-full"
-            >
-              Confirmar
-            </button>
-          </div>
+          <ButtonGroup>
+            <SubmitButton>Confirmar</SubmitButton>
+          </ButtonGroup>
           <div className="text-center mt-2">
             <small>
               Novo por aqui?{" "}
