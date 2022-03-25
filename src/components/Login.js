@@ -54,11 +54,10 @@ export default class Login extends React.Component {
             <label>Email</label>
             <input
               type={"email"}
-              className="rounded-sm mb-2 px-2 w-full bg-zinc-700 text-white focus:outline-teal-200 outline-none transition-all duration-150 ease-in-out"
               onChange={this.formChangeHandler}
               name="email"
               placeholder="Digite o email"
-            ></input>
+            />
             {this.state.emailNotFoundError && (
               <small className="text-red-500">O email não existe!</small>
             )}
@@ -68,9 +67,8 @@ export default class Login extends React.Component {
               type={"password"}
               name="password"
               onChange={this.formChangeHandler}
-              className="rounded-sm px-2 w-full bg-zinc-700 text-white focus:outline-teal-200 outline-none transition-all duration-150 ease-in-out"
               placeholder="Digite a senha"
-            ></input>
+            />
             {this.state.wrongPasswordError && (
               <div>
                 <small className="text-red-500">A senha está errada</small>

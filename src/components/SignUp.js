@@ -65,10 +65,9 @@ class SingUp extends React.Component {
               onChange={this.formChangeHandler}
               value={this.state.username}
               name="username"
-              className="rounded-sm mb-2 px-2 w-full bg-zinc-700 text-white focus:outline-teal-200 outline-none transition-all duration-150 ease-in-out"
               placeholder="Como será chamado?"
               required
-            ></input>
+            />
 
             <label>Email</label>
             <input
@@ -76,10 +75,9 @@ class SingUp extends React.Component {
               onChange={this.formChangeHandler}
               value={this.state.email}
               name="email"
-              className="rounded-sm mb-2 px-2 w-full bg-zinc-700 text-white focus:outline-teal-200 outline-none transition-all duration-150 ease-in-out"
               placeholder="Digite o email"
               required
-            ></input>
+            />
             {this.state.alreadyExistsError && (
               <small className="text-red-500">O email já existe!</small>
             )}
@@ -90,10 +88,9 @@ class SingUp extends React.Component {
               onChange={this.formChangeHandler}
               value={this.state.password}
               name="password"
-              className="rounded-sm mb-2 px-2 w-full bg-zinc-700 text-white focus:outline-teal-200 outline-none transition-all duration-150 ease-in-out"
               placeholder="Digite a senha"
               required
-            ></input>
+            />
 
             <label>Confirme a senha</label>
             <input
@@ -101,10 +98,9 @@ class SingUp extends React.Component {
               onChange={this.formChangeHandler}
               value={this.state.confirmPassword}
               name="confirmPassword"
-              className="rounded-sm px-2 w-full bg-zinc-700 text-white focus:outline-teal-200 outline-none transition-all duration-150 ease-in-out"
               placeholder="Confirme a senha"
               required
-            ></input>
+            />
 
             {/* mensagem de erro */}
             {this.state.differentPasswordsError ? (
