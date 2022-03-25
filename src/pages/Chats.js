@@ -1,9 +1,9 @@
 import { ChevronDownIcon, PlusCircleIcon } from "@heroicons/react/outline";
 import { useEffect } from "react";
-import { ChatForm } from "./ChatForm";
-import { ChatList } from "./ChatList";
-import Modal, { useModal } from "./Modal";
-import { ServerDropdown, useDropdown } from "./ServerDropdown";
+import { ChatForm } from "../components/Modal/ChatForm";
+import { ChatList } from "../components/ChatList";
+import Modal, { useModal } from "../components/Modal/Modal";
+import { ServerDropdown, useDropdown } from "../components/ServerDropdown";
 
 function Chats({
   activeServer,

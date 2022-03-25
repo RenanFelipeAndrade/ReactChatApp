@@ -1,10 +1,10 @@
 import { ChatIcon } from "@heroicons/react/outline";
 import { arrayUnion, doc, updateDoc } from "firebase/firestore";
 import { useForm } from "react-hook-form";
-import { db } from "../firebase/init";
-import { ButtonGroup } from "./ButtonGroup";
-import { ConfirmButton } from "./Buttons/ConfirmButton";
-import { CancelButton } from "./Buttons/CancelButton";
+import { db } from "../../firebase/init";
+import { ButtonGroup } from "../ButtonGroup";
+import { ConfirmButton } from "../Buttons/ConfirmButton";
+import { CancelButton } from "../Buttons/CancelButton";
 
 export const ChatForm = ({ toggleModal, activeServer }) => {
   const {
@@ -45,7 +45,7 @@ export const ChatForm = ({ toggleModal, activeServer }) => {
             </div>
           )}
           <ButtonGroup>
-            <ConfirmButton submit>Confirmar</ConfirmButton>
+            <ConfirmButton submit="true">Confirmar</ConfirmButton>
             <CancelButton onClick={toggleModal}>Cancelar</CancelButton>
           </ButtonGroup>
         </div>

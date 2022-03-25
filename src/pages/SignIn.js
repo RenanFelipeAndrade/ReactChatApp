@@ -1,10 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import trySignIn from "../firebase/trySignIn";
-import { ButtonGroup } from "./ButtonGroup";
-import { ConfirmButton } from "./Buttons/ConfirmButton";
+import { ButtonGroup } from "../components/ButtonGroup";
+import { ConfirmButton } from "../components/Buttons/ConfirmButton";
 
-export default class Login extends React.Component {
+export default class SignIn extends React.Component {
   constructor() {
     super();
     // informações do usuário, email e senha
@@ -77,7 +77,7 @@ export default class Login extends React.Component {
           </div>
 
           <ButtonGroup>
-            <ConfirmButton submit>Confirmar</ConfirmButton>
+            <ConfirmButton submit="true">Confirmar</ConfirmButton>
           </ButtonGroup>
           <div className="text-center mt-2">
             <small>

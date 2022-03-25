@@ -1,9 +1,9 @@
 import { ServerIcon } from "@heroicons/react/outline";
 import React from "react";
-import { createServer } from "../firebase/createServer";
-import { ButtonGroup } from "./ButtonGroup";
-import { CancelButton } from "./Buttons/CancelButton";
-import { ConfirmButton } from "./Buttons/ConfirmButton";
+import { createServer } from "../../firebase/createServer";
+import { ButtonGroup } from "../ButtonGroup";
+import { CancelButton } from "../Buttons/CancelButton";
+import { ConfirmButton } from "../Buttons/ConfirmButton";
 
 export class ServerForm extends React.Component {
   constructor(props) {
@@ -54,7 +54,7 @@ export class ServerForm extends React.Component {
             )}
 
             <ButtonGroup>
-              <ConfirmButton submit>Confirmar</ConfirmButton>
+              <ConfirmButton submit="true">Confirmar</ConfirmButton>
               <CancelButton onClick={this.props.toggleModal}>
                 Cancelar
               </CancelButton>

@@ -2,8 +2,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 import trySignUp from "../firebase/trySignUp";
 import "../firebase/init";
-import { ConfirmButton } from "./Buttons/ConfirmButton";
-import { ButtonGroup } from "./ButtonGroup";
+import { ConfirmButton } from "../components/Buttons/ConfirmButton";
+import { ButtonGroup } from "../components/ButtonGroup";
 
 class SingUp extends React.Component {
   constructor() {
@@ -115,7 +115,7 @@ class SingUp extends React.Component {
           </div>
 
           <ButtonGroup>
-            <ConfirmButton submit>Confirmar</ConfirmButton>
+            <ConfirmButton submit="true">Confirmar</ConfirmButton>
           </ButtonGroup>
           <div className="mt-2">
             <small>

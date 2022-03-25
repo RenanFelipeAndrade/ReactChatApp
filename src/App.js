@@ -1,14 +1,14 @@
-import Sidebar from "./components/Sidebar";
-import Chats from "./components/Chats";
-import MessageArea from "./components/MessageArea";
 import React, { useRef, useState } from "react";
 import { Route, Routes } from "react-router";
-import Login from "./components/Login";
-import SignUp from "./components/SignUp";
 import RequireAuth from "./components/RequireAuth";
-import { Invite } from "./components/Invite";
 import { MenuIcon } from "@heroicons/react/outline";
 import Div100vh from "react-div-100vh";
+import Sidebar from "./pages/Sidebar";
+import Chats from "./pages/Chats";
+import MessageArea from "./pages/MessageArea";
+import { Invite } from "./pages/Invite";
+import SignIn from "./pages/SignIn";
+import SingUp from "./pages/SignUp";
 
 function App() {
   const [activeServer, setActiveServer] = useState(null);
@@ -69,8 +69,8 @@ function App() {
           </RequireAuth>
         }
       ></Route>
-      <Route path="/login" element={<Login />} />
-      <Route path="/signup" element={<SignUp />} />
+      <Route path="/signin" element={<SignIn />} />
+      <Route path="/signup" element={<SingUp />} />
     </Routes>
   );
 }

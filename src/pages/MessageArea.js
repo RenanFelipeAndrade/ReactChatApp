@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useAuth } from "../context/AuthContext";
 import { db } from "../firebase/init";
-import { MessageList } from "./MessageList";
+import { MessageList } from "../components/MessageList";
 import { ChevronDownIcon } from "@heroicons/react/outline";
 
 function MessageArea({ activeChat, activeServer, serverDocs, chats }) {

@@ -1,10 +1,10 @@
 import { ServerIcon } from "@heroicons/react/outline";
 import { doc, updateDoc } from "firebase/firestore";
 import { useForm } from "react-hook-form";
-import { db } from "../firebase/init";
-import { ButtonGroup } from "./ButtonGroup";
-import { CancelButton } from "./Buttons/CancelButton";
-import { ConfirmButton } from "./Buttons/ConfirmButton";
+import { db } from "../../firebase/init";
+import { ButtonGroup } from "../ButtonGroup";
+import { CancelButton } from "../Buttons/CancelButton";
+import { ConfirmButton } from "../Buttons/ConfirmButton";
 
 export function RenameServerForm({ toggleRenameModal, activeServer }) {
   const {
@@ -45,7 +45,7 @@ export function RenameServerForm({ toggleRenameModal, activeServer }) {
         )}
       </div>
       <ButtonGroup>
-        <ConfirmButton submit>Confirmar</ConfirmButton>
+        <ConfirmButton submit="true">Confirmar</ConfirmButton>
         <CancelButton onClick={toggleRenameModal}>Cancelar</CancelButton>
       </ButtonGroup>
     </form>

@@ -1,8 +1,8 @@
 import { deleteDoc, doc } from "firebase/firestore";
-import { db } from "../firebase/init";
-import { ButtonGroup } from "./ButtonGroup";
-import { CancelButton } from "./Buttons/CancelButton";
-import { ConfirmButton } from "./Buttons/ConfirmButton";
+import { db } from "../../firebase/init";
+import { ButtonGroup } from "../ButtonGroup";
+import { CancelButton } from "../Buttons/CancelButton";
+import { ConfirmButton } from "../Buttons/ConfirmButton";
 
 export function ConfirmDelete({
   activeServer,

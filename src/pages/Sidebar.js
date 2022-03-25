@@ -1,13 +1,13 @@
 import "../css/app.css";
 import { getAuth, signOut } from "firebase/auth";
 import { Navigate } from "react-router";
-import Modal, { useModal } from "./Modal";
+import Modal, { useModal } from "../components/Modal/Modal";
 import { useContext, useEffect } from "react";
 import serverListener from "../firebase/serverListener";
 import { AuthContext, useAuth } from "../context/AuthContext";
-import { ServerForm } from "./ServerForm";
-import { ServerList } from "./ServerList";
-import { CancelButton } from "./Buttons/CancelButton";
+import { ServerForm } from "../components/Modal/ServerForm";
+import { ServerList } from "../components/ServerList";
+import { CancelButton } from "../components/Buttons/CancelButton";
 
 function Sidebar({
   activeServer,

@@ -4,9 +4,9 @@ import Div100vh from "react-div-100vh";
 import { useNavigate, useParams } from "react-router";
 import { useAuth } from "../context/AuthContext";
 import { db } from "../firebase/init";
-import { CancelButton } from "./Buttons/CancelButton";
-import { ConfirmButton } from "./Buttons/ConfirmButton";
-import { ButtonGroup } from "./ButtonGroup";
+import { CancelButton } from "../components/Buttons/CancelButton";
+import { ConfirmButton } from "../components/Buttons/ConfirmButton";
+import { ButtonGroup } from "../components/ButtonGroup";
 
 export function Invite() {
   const [server, setServer] = useState(null);

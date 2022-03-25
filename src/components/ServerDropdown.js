@@ -1,9 +1,9 @@
 import { TrashIcon, PencilIcon, UserAddIcon } from "@heroicons/react/outline";
 import { useState } from "react";
 import { useLocation } from "react-router";
-import { ConfirmDelete } from "./ConfirmDelete";
-import Modal, { useModal } from "./Modal";
-import { RenameServerForm } from "./RenameServerForm";
+import { ConfirmDelete } from "./Modal/ConfirmDelete";
+import Modal, { useModal } from "./Modal/Modal";
+import { RenameServerForm } from "./Modal/RenameServerForm";
 
 export function useDropdown() {
   const [isActive, setIsVisible] = useState(false);
