@@ -4,6 +4,9 @@ import Div100vh from "react-div-100vh";
 import { useNavigate, useParams } from "react-router";
 import { useAuth } from "../context/AuthContext";
 import { db } from "../firebase/init";
+import { CancelButton } from "./Buttons/CancelButton";
+import { ConfirmButton } from "./Buttons/ConfirmButton";
+import { ButtonGroup } from "./ButtonGroup";
 
 export function Invite() {
   const [server, setServer] = useState(null);
@@ -16,7 +19,7 @@ export function Invite() {
     getDoc(doc(db, "server", params.server)).then((doc) => setServer(doc));
   }, [setServer, params.server]);
 
-  const numberOfParticipants = server?.data().participantsId.length - 1;
+  const numberOfParticipants = server?.data().participantsId.length;
   const participantsList = server
     ?.data()
     .participantsObject.map((participant) => (
@@ -33,10 +36,8 @@ export function Invite() {
         <h4>Participantes ({numberOfParticipants}):</h4>
         {participantsList}
       </ul>
-      <section className="min-w-full space-x-1 text-center mt-2">
-        <button
-          type="button"
-          className="px-2 py-1 text-sm bg-teal-500 rounded-sm hover:bg-teal-700 transition w-fit"
+      <ButtonGroup>
+        <ConfirmButton
           onClick={() => {
             // adiciona o usuário atual aos participantes
             updateDoc(doc(db, "server", server.id), {
@@ -49,15 +50,11 @@ export function Invite() {
           }}
         >
           Entrar
-        </button>
-        <button
-          type="button"
-          className="px-2 py-1 text-sm bg-red-500 rounded-sm hover:bg-red-700 transition w-fit"
-          onClick={() => navigate("/", { replace: true })}
-        >
+        </ConfirmButton>
+        <CancelButton onClick={() => navigate("/", { replace: true })}>
           Cancelar
-        </button>
-      </section>
+        </CancelButton>
+      </ButtonGroup>
     </Div100vh>
   );
 }
