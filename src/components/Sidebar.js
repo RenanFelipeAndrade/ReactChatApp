@@ -1,9 +1,8 @@
 import "../css/app.css";
-import { PlusIcon } from "@heroicons/react/outline";
 import { getAuth, signOut } from "firebase/auth";
 import { Navigate } from "react-router";
 import Modal, { useModal } from "./Modal";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect } from "react";
 import serverListener from "../firebase/serverListener";
 import { AuthContext, useAuth } from "../context/AuthContext";
 import { ServerForm } from "./ServerForm";
@@ -27,18 +26,12 @@ function Sidebar({
 
   return (
     <div className="sidebar-container">
-      <ul>
-        <ServerList
-          activeServer={activeServer}
-          serversDocs={serversDocs}
-          setActiveServer={setActiveServer}
-        />
-        <li onClick={toggleModal}>
-          <button type="button" className="sidebar-item">
-            <PlusIcon className="icon" />
-          </button>
-        </li>
-      </ul>
+      <ServerList
+        activeServer={activeServer}
+        toggleModal={toggleModal}
+        serversDocs={serversDocs}
+        setActiveServer={setActiveServer}
+      />
       <CancelButton
         fitWidth
         centered
