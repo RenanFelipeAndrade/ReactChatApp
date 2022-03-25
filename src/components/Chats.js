@@ -5,7 +5,7 @@ import { ChatList } from "./ChatList";
 import Modal, { useModal } from "./Modal";
 import { ServerDropdown, useDropdown } from "./ServerDropdown";
 
-function TextChats({
+function Chats({
   activeServer,
   setActiveChat,
   setActiveServer,
@@ -31,7 +31,7 @@ function TextChats({
   return (
     <>
       <div className="chat-container">
-        {activeServer ? (
+        {activeServer && (
           <div className="server-control">
             <header className="server-control-header">
               <span className="server-control-title">
@@ -57,7 +57,7 @@ function TextChats({
               </button>
             </section>
           </div>
-        ) : null}
+        )}
         <ChatList
           activeChat={activeChat}
           chats={chats}
@@ -72,4 +72,4 @@ function TextChats({
   );
 }
 
-export default TextChats;
+export default Chats;

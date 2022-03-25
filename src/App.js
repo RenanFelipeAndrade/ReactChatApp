@@ -1,5 +1,5 @@
 import Sidebar from "./components/Sidebar";
-import TextChats from "./components/TextChats";
+import Chats from "./components/Chats";
 import MessageArea from "./components/MessageArea";
 import React, { useRef, useState } from "react";
 import { Route, Routes } from "react-router";
@@ -36,7 +36,7 @@ function App() {
                   setActiveServer={setActiveServer}
                   activeServer={activeServer}
                 />
-                <TextChats
+                <Chats
                   setActiveChat={setActiveChat}
                   activeServer={activeServer}
                   setActiveServer={setActiveServer}
