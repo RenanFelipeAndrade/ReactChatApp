@@ -8,6 +8,7 @@ import serverListener from "../firebase/serverListener";
 import { AuthContext, useAuth } from "../context/AuthContext";
 import { ServerForm } from "./ServerForm";
 import { ServerList } from "./ServerList";
+import { CancelButton } from "./Buttons/CancelButton";
 
 function Sidebar({
   activeServer,
@@ -38,9 +39,9 @@ function Sidebar({
           </button>
         </li>
       </ul>
-      <button
-        type="button"
-        className="danger-button"
+      <CancelButton
+        fitWidth
+        centered
         onClick={() => {
           const auth = getAuth();
           signOut(auth)
@@ -53,7 +54,7 @@ function Sidebar({
         }}
       >
         Sair
-      </button>
+      </CancelButton>
       <Modal isVisible={isVisible} toggleModal={toggleModal}>
         <ServerForm currentUser={userData} toggleModal={toggleModal} />
       </Modal>
