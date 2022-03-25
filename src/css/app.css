@@ -152,11 +152,11 @@ body,
   @apply rounded-r-sm h-fit py-1 self-end bg-teal-500 text-sm px-2;
 }
 .message-textarea {
-  @apply resize-y w-full px-1 disabled:bg-zinc-800 disabled:placeholder:text-zinc-500  text-white rounded-sm bg-zinc-700 transition-all duration-150 ease-in-out focus:ring-1 focus:ring-teal-500;
+  @apply resize-y w-full px-1 disabled:bg-zinc-800 disabled:placeholder:text-zinc-700  text-white rounded-sm bg-zinc-700 transition-all duration-150 ease-in-out focus:ring-1 focus:ring-teal-500;
 }
 #loading {
   @apply fixed h-screen w-screen bg-zinc-900 p-10;
 }
 input {
-  @apply w-full px-1  text-white rounded-sm border-none focus:ring-2 outline-none focus:ring-teal-500 bg-zinc-700  transition-all duration-150  ease-in-out;
+  @apply w-full px-1 mb-1 text-white rounded-sm border-none focus:ring-2 outline-none focus:ring-teal-500 bg-zinc-700  transition-all duration-150  ease-in-out;
 }
