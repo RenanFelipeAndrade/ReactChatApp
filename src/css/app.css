@@ -31,17 +31,17 @@ body,
 .intermediate-icon {
   @apply w-6 h-6;
 }
+.large-icon {
+  @apply w-8 h-8;
+}
 .menu {
-  @apply -translate-x-64 sm:translate-x-0 fixed sm:static h-full transition-transform duration-500;
+  @apply -translate-x-64 sm:translate-x-0 fixed sm:static h-full transition-transform duration-500 flex flex-row;
 }
 .menu-active {
   @apply translate-x-0;
 }
 #menu-button {
   @apply inline-block sm:hidden;
-}
-.menu {
-  @apply flex flex-row;
 }
 .sidebar-container {
   @apply bg-zinc-700  w-28 xl:w-40 flex flex-col justify-between p-1 sm:p-2;

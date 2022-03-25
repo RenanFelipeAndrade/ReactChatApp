@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 import { useAuth } from "../context/AuthContext";
 import { db } from "../firebase/init";
 import { MessageList } from "./MessageList";
+import { ChevronDownIcon } from "@heroicons/react/outline";
 
 function MessageArea({ activeChat, activeServer, serverDocs, chats }) {
   const { register, handleSubmit, resetField } = useForm();
@@ -109,6 +110,9 @@ function MessageArea({ activeChat, activeServer, serverDocs, chats }) {
           Enviar
         </button>
       </form>
+      <button className="fixed bottom-20 right-5" onClick={scrollDown}>
+        <ChevronDownIcon className="intermediate-icon bg-zinc-700 rounded " />
+      </button>
     </div>
   );
 }
