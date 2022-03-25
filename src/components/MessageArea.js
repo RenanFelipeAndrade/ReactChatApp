@@ -110,7 +110,10 @@ function MessageArea({ activeChat, activeServer, serverDocs, chats }) {
           Enviar
         </button>
       </form>
-      <button className="fixed bottom-20 right-5" onClick={scrollDown}>
+      <button
+        className="fixed bottom-20 right-5 sm:right-10"
+        onClick={scrollDown}
+      >
         <ChevronDownIcon className="intermediate-icon bg-zinc-700 rounded " />
       </button>
     </div>
