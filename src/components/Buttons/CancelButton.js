@@ -1,4 +1,10 @@
-export const CancelButton = ({ children, onClick, fitWidth, centered }) => {
+export const CancelButton = ({
+  children,
+  onClick,
+  fitWidth,
+  centered,
+  ...props
+}) => {
   return (
     <button
       className={`px-2 py-1 text-sm bg-red-500 rounded-sm hover:bg-red-700 transition ${
@@ -6,6 +12,7 @@ export const CancelButton = ({ children, onClick, fitWidth, centered }) => {
       } ${centered && "mx-auto"}`}
       onClick={onClick}
       type={"button"}
+      {...props}
     >
       {children}
     </button>
