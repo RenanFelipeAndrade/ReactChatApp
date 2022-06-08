@@ -33,7 +33,6 @@ class SingUp extends React.Component {
         if (error.code === "auth/email-already-in-use")
           this.setState({ alreadyExistsError: true });
       });
-
       return;
     }
     // se são difentes, renderiza mensagem de erro
