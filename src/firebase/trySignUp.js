@@ -13,5 +13,5 @@ export default async function trySignUp(data) {
         (userUpdated = true)
       )
   );
-  if (userUpdated) window.location.href = "/login";
+  if (userUpdated) window.location.href = "/signin";
 }
