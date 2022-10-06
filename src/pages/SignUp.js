@@ -120,7 +120,7 @@ class SingUp extends React.Component {
             <small>
               Tem uma conta? Faça login{" "}
               <Link
-                to={"/login"}
+                to={"/signin"}
                 className="text-blue-400 transition-colors hover:text-blue-600 focus:text-blue-600 focus:underline "
                 replace
               >
