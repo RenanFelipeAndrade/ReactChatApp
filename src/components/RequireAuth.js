@@ -5,5 +5,5 @@ import { LoadingScreen } from "./LoadingScreen";
 export default function RequireAuth({ children }) {
   const { userData, loading } = useAuth();
   if (loading) return <LoadingScreen />;
-  return userData ? children : <Navigate to={"/login"} replace />;
+  return userData ? children : <Navigate to={"/signup"} replace />;
 }

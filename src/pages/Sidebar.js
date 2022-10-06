@@ -39,7 +39,7 @@ function Sidebar({
           const auth = getAuth();
           signOut(auth)
             .then(() => {
-              <Navigate to={"/login"} replace />;
+              <Navigate to={"/signin"} replace />;
             })
             .catch((error) => {
               console.log(error);

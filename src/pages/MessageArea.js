@@ -28,7 +28,7 @@ function MessageArea({ activeChat, activeServer, serverDocs, chats }) {
     let emptyBeginningLines = 0;
     for (let index in splitedMessage) {
       // verifica se a linha atual é vazia e se está antes de qualquer conteúdo
-      if (splitedMessage[index].length === 0 && emptyBeginningLines == index)
+      if (splitedMessage[index].length === 0 && emptyBeginningLines === index)
         emptyBeginningLines++;
       index++;
     }
@@ -41,7 +41,7 @@ function MessageArea({ activeChat, activeServer, serverDocs, chats }) {
     // repete o mesmo processo pelo lado inverso
     emptyBeginningLines = 0;
     for (let index in semiCleanMessage) {
-      if (semiCleanMessage[index].length === 0 && emptyBeginningLines == index)
+      if (semiCleanMessage[index].length === 0 && emptyBeginningLines === index)
         emptyBeginningLines++;
       index++;
     }
